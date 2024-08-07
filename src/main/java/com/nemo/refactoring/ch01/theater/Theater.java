@@ -18,8 +18,7 @@ public class Theater {
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 		}
-		int totalAmount = appleSauce(invoice);
-		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
+		result.append(String.format("Amount owed is %s", usd(appleSauce(invoice)))).append("\n");
 		result.append(String.format("You earned %d credits", totalVolumeCredits(invoice.getPerformances()))).append("\n");
 		return result.toString();
 	}
