@@ -62,11 +62,11 @@ public class Theater {
 	}
 
 	private int totalVolumeCredits(List<Performance> performances) {
-		int volumeCredits = 0;
+		int result = 0;
 		for (Performance perf : performances){
-			volumeCredits += volumeCreditsFor(perf);
+			result += volumeCreditsFor(perf);
 		}
-		return volumeCredits;
+		return result;
 	}
 
 	private int volumeCreditsFor(Performance perf) {
