@@ -30,13 +30,13 @@ public class Theater {
 
 	private int volumeCreditsFor(Performance perf) {
 		// add volume credits
-		int volumeCredits = 0;
-		volumeCredits = Math.max(perf.getAudience() - 30, 0);
+		int result;
+		result = Math.max(perf.getAudience() - 30, 0);
 		// add extra credit for every five comedy attendees
 		if ("comedy".equals(playFor(perf).getType())) {
-			volumeCredits += (int)Math.floor((double)perf.getAudience() / 5);
+			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
-		return volumeCredits;
+		return result;
 	}
 
 	private Play playFor(Performance aPerformance) {
