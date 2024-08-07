@@ -54,11 +54,11 @@ public class Theater {
 	}
 
 	private int totalAmount(Invoice invoice) {
-		int totalAmount = 0;
+		int result = 0;
 		for (Performance perf : invoice.getPerformances()){
-			totalAmount += amountFor(perf);
+			result += amountFor(perf);
 		}
-		return totalAmount;
+		return result;
 	}
 
 	private int totalVolumeCredits(List<Performance> performances) {
