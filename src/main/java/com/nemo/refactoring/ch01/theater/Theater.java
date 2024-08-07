@@ -20,10 +20,8 @@ public class Theater {
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
 		}
-		int volumeCredits = totalVolumeCredits(invoice.getPerformances());
-
 		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
-		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
+		result.append(String.format("You earned %d credits", totalVolumeCredits(invoice.getPerformances()))).append("\n");
 		return result.toString();
 	}
 
