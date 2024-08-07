@@ -16,12 +16,7 @@ public class Theater {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
-			// add volume credits
-			volumeCredits += Math.max(perf.getAudience() - 30, 0);
-			// add extra credit for every five comedy attendees
-			if ("comedy".equals(playFor(perf).getType())) {
-				volumeCredits += (int)Math.floor((double)perf.getAudience() / 5);
-			}
+			volumeCredits += volumeCreditsFor(perf);
 
 			// print line for this order
 			result.append(String.format(" %s: $%,.2f (%d seats)", playFor(perf).getName(), (double)amountFor(perf) / 100, perf.getAudience())).append("\n");
@@ -31,6 +26,17 @@ public class Theater {
 		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
+	}
+
+	private int volumeCreditsFor(Performance perf) {
+		// add volume credits
+		int volumeCredits = 0;
+		volumeCredits = Math.max(perf.getAudience() - 30, 0);
+		// add extra credit for every five comedy attendees
+		if ("comedy".equals(playFor(perf).getType())) {
+			volumeCredits += (int)Math.floor((double)perf.getAudience() / 5);
+		}
+		return volumeCredits;
 	}
 
 	private Play playFor(Performance aPerformance) {
