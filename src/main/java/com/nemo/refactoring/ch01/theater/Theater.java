@@ -3,7 +3,14 @@ package com.nemo.refactoring.ch01.theater;
 import java.util.Map;
 
 public class Theater {
-	public String statement(Invoice invoice, Map<String, Play> plays) {
+
+	private final Map<String, Play> plays;
+
+	public Theater(Map<String, Play> plays) {
+		this.plays = plays;
+	}
+
+	public String statement(Invoice invoice) {
 		int totalAmount = 0;
 		int volumeCredits = 0;
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");

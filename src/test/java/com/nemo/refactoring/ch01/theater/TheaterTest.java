@@ -13,18 +13,18 @@ class TheaterTest {
 	@Test
 	void statement() {
 		// given
-		Theater theater = new Theater();
 		Map<String, Play> plays = Map.ofEntries(
 			Map.entry("hamlet", new Play("Hamlet", "tragedy")),
 			Map.entry("as-like", new Play("As You Like It", "comedy")),
 			Map.entry("othello", new Play("Othello", "tragedy")));
+		Theater theater = new Theater(plays);
 		List<Performance> performances = List.of(
 			new Performance("hamlet", 55),
 			new Performance("as-like", 35),
 			new Performance("othello", 40));
 		Invoice invoice = new Invoice("BigCo", performances);
 		// when
-		String result = theater.statement(invoice, plays);
+		String result = theater.statement(invoice);
 		// then
 		String expected = "Statement for BigCo\n" +
 						  " Hamlet: $650.00 (55 seats)\n" +
