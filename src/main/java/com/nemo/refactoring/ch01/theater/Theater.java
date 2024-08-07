@@ -9,17 +9,16 @@ public class Theater {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
-			final Play play = playFor(perf, plays);
 			// add volume credits
 			volumeCredits += Math.max(perf.getAudience() - 30, 0);
 			// add extra credit for every five comedy attendees
-			if ("comedy".equals(play.getType())) {
+			if ("comedy".equals(playFor(perf, plays).getType())) {
 				volumeCredits += (int)Math.floor((double)perf.getAudience() / 5);
 			}
 
 			// print line for this order
-			result.append(String.format(" %s: $%,.2f (%d seats)", play.getName(), (double)amountFor(perf, play) / 100, perf.getAudience())).append("\n");
-			totalAmount += amountFor(perf, play);
+			result.append(String.format(" %s: $%,.2f (%d seats)", playFor(perf, plays).getName(), (double)amountFor(perf, playFor(perf, plays)) / 100, perf.getAudience())).append("\n");
+			totalAmount += amountFor(perf, playFor(perf, plays));
 		}
 
 		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
