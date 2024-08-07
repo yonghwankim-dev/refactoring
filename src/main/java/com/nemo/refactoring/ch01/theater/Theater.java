@@ -19,11 +19,11 @@ public class Theater {
 			volumeCredits += volumeCreditsFor(perf);
 
 			// print line for this order
-			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd((double)amountFor(perf) / 100), perf.getAudience())).append("\n");
+			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
 		}
 
-		result.append(String.format("Amount owed is %s", usd((double)totalAmount / 100))).append("\n");
+		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
 	}
@@ -66,6 +66,6 @@ public class Theater {
 	}
 
 	private String usd(double aNumber) {
-		return String.format("$%,.2f", aNumber);
+		return String.format("$%,.2f", aNumber / 100);
 	}
 }
