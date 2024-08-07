@@ -10,4 +10,12 @@ public class Invoice {
 		this.customer = customer;
 		this.performances = performances;
 	}
+
+	public String getCustomer() {
+		return customer;
+	}
+
+	public List<Performance> getPerformances() {
+		return performances;
+	}
 }

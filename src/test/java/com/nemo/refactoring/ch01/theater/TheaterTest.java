@@ -1,6 +1,7 @@
 package com.nemo.refactoring.ch01.theater;
 
 import java.util.List;
+import java.util.Map;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -13,9 +14,13 @@ class TheaterTest {
 	void statement() {
 		// given
 		Theater theater = new Theater();
-		List<Play> plays = List.of(new Play("Hamlet", "tragedy"), new Play("As You Like It", "comedy"),
-			new Play("Othello", "tragedy"));
-		List<Performance> performances = List.of(new Performance("Hamlet", 55), new Performance("As You Like It", 35),
+		Map<String, Play> plays = Map.ofEntries(
+			Map.entry("hamlet", new Play("Hamlet", "tragedy")),
+			Map.entry("as-like", new Play("As You Like It", "comedy")),
+			Map.entry("othello", new Play("Othello", "tragedy")));
+		List<Performance> performances = List.of(
+			new Performance("Hamlet", 55),
+			new Performance("As You Like It", 35),
 			new Performance("Othello", 40));
 		Invoice invoice = new Invoice("BigCo", performances);
 		// when
