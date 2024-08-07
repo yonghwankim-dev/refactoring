@@ -19,9 +19,9 @@ class TheaterTest {
 			Map.entry("as-like", new Play("As You Like It", "comedy")),
 			Map.entry("othello", new Play("Othello", "tragedy")));
 		List<Performance> performances = List.of(
-			new Performance("Hamlet", 55),
-			new Performance("As You Like It", 35),
-			new Performance("Othello", 40));
+			new Performance("hamlet", 55),
+			new Performance("as-like", 35),
+			new Performance("othello", 40));
 		Invoice invoice = new Invoice("BigCo", performances);
 		// when
 		String result = theater.statement(invoice, plays);

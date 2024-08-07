@@ -8,4 +8,12 @@ public class Performance {
 		this.playId = playId;
 		this.audience = audience;
 	}
+
+	public String getPlayId() {
+		return playId;
+	}
+
+	public int getAudience() {
+		return audience;
+	}
 }
