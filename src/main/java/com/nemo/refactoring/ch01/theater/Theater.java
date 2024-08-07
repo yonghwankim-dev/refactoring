@@ -16,11 +16,12 @@ public class Theater {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
-			volumeCredits += volumeCreditsFor(perf);
-
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
+		}
+		for (Performance perf : invoice.getPerformances()){
+			volumeCredits += volumeCreditsFor(perf);
 		}
 
 		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
@@ -29,10 +30,8 @@ public class Theater {
 	}
 
 	private int volumeCreditsFor(Performance perf) {
-		// add volume credits
 		int result;
 		result = Math.max(perf.getAudience() - 30, 0);
-		// add extra credit for every five comedy attendees
 		if ("comedy".equals(playFor(perf).getType())) {
 			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
