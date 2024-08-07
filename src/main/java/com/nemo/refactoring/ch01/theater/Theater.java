@@ -27,21 +27,21 @@ public class Theater {
 		return result.toString();
 	}
 
-	private int amountFor(Performance perf, Play play) {
+	private int amountFor(Performance aPerformance, Play play) {
 		int result;
 		switch (play.getType()) {
 			case "tragedy":
 				result = 40000;
-				if (perf.getAudience() > 30) {
-					result += 1000 * (perf.getAudience() - 30);
+				if (aPerformance.getAudience() > 30) {
+					result += 1000 * (aPerformance.getAudience() - 30);
 				}
 				break;
 			case "comedy":
 				result = 30000;
-				if (perf.getAudience() > 20) {
-					result += 10000 + 500 * (perf.getAudience() - 20);
+				if (aPerformance.getAudience() > 20) {
+					result += 10000 + 500 * (aPerformance.getAudience() - 20);
 				}
-				result += 300 * perf.getAudience();
+				result += 300 * aPerformance.getAudience();
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown type: " + play.getType());
