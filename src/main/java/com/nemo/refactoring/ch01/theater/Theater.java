@@ -18,7 +18,7 @@ public class Theater {
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 		}
-		result.append(String.format("Amount owed is %s", usd(appleSauce(invoice)))).append("\n");
+		result.append(String.format("Amount owed is %s", usd(totalAmount(invoice)))).append("\n");
 		result.append(String.format("You earned %d credits", totalVolumeCredits(invoice.getPerformances()))).append("\n");
 		return result.toString();
 	}
@@ -53,7 +53,7 @@ public class Theater {
 		return String.format("$%,.2f", aNumber / 100);
 	}
 
-	private int appleSauce(Invoice invoice) {
+	private int totalAmount(Invoice invoice) {
 		int totalAmount = 0;
 		for (Performance perf : invoice.getPerformances()){
 			totalAmount += amountFor(perf);
