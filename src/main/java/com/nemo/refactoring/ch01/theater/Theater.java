@@ -10,25 +10,6 @@ public class Theater {
 
 		for(Performance perf : invoice.getPerformances()){
 			final Play play = plays.get(perf.getPlayId());
-			int thisAmount;
-
-			switch (play.getType()) {
-				case "tragedy":
-					thisAmount = 40000;
-					if (perf.getAudience() > 30) {
-						thisAmount += 1000 * (perf.getAudience() - 30);
-					}
-					break;
-				case "comedy":
-					thisAmount = 30000;
-					if (perf.getAudience() > 20) {
-						thisAmount += 10000 + 500 * (perf.getAudience() - 20);
-					}
-					thisAmount += 300 * perf.getAudience();
-					break;
-				default:
-					throw new IllegalArgumentException("Unknown type: " + play.getType());
-			}
 			// add volume credits
 			volumeCredits += Math.max(perf.getAudience() - 30, 0);
 			// add extra credit for every five comedy attendees
@@ -37,12 +18,34 @@ public class Theater {
 			}
 
 			// print line for this order
-			result.append(String.format(" %s: $%,.2f (%d seats)", play.getName(), (double)thisAmount / 100, perf.getAudience())).append("\n");
-			totalAmount += thisAmount;
+			result.append(String.format(" %s: $%,.2f (%d seats)", play.getName(), (double)amountFor(perf, play) / 100, perf.getAudience())).append("\n");
+			totalAmount += amountFor(perf, play);
 		}
 
 		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
+	}
+
+	private int amountFor(Performance perf, Play play) {
+		int thisAmount;
+		switch (play.getType()) {
+			case "tragedy":
+				thisAmount = 40000;
+				if (perf.getAudience() > 30) {
+					thisAmount += 1000 * (perf.getAudience() - 30);
+				}
+				break;
+			case "comedy":
+				thisAmount = 30000;
+				if (perf.getAudience() > 20) {
+					thisAmount += 10000 + 500 * (perf.getAudience() - 20);
+				}
+				thisAmount += 300 * perf.getAudience();
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown type: " + play.getType());
+		}
+		return thisAmount;
 	}
 }
