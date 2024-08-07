@@ -13,7 +13,6 @@ public class Theater {
 
 	public String statement(Invoice invoice) {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
-
 		for(Performance perf : invoice.getPerformances()){
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
