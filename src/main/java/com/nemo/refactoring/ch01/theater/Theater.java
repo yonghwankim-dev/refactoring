@@ -19,11 +19,11 @@ public class Theater {
 			volumeCredits += volumeCreditsFor(perf);
 
 			// print line for this order
-			result.append(String.format(" %s: $%,.2f (%d seats)", playFor(perf).getName(), (double)amountFor(perf) / 100, perf.getAudience())).append("\n");
+			result.append(String.format(" %s: $%s (%d seats)", playFor(perf).getName(), format((double)amountFor(perf) / 100), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
 		}
 
-		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
+		result.append(String.format("Amount owed is $%s", format((double)totalAmount / 100))).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
 	}
@@ -63,5 +63,9 @@ public class Theater {
 				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
 		}
 		return result;
+	}
+
+	private String format(double aNumber) {
+		return String.format("%,.2f", aNumber);
 	}
 }
