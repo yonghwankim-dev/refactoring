@@ -9,7 +9,7 @@ public class Theater {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
-			final Play play = plays.get(perf.getPlayId());
+			final Play play = playFor(perf, plays);
 			// add volume credits
 			volumeCredits += Math.max(perf.getAudience() - 30, 0);
 			// add extra credit for every five comedy attendees
@@ -25,6 +25,10 @@ public class Theater {
 		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
+	}
+
+	private Play playFor(Performance aPerformance, Map<String, Play> plays) {
+		return plays.get(aPerformance.getPlayId());
 	}
 
 	private int amountFor(Performance aPerformance, Play play) {
