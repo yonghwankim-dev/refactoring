@@ -24,8 +24,8 @@ public class Theater {
 			}
 
 			// print line for this order
-			result.append(String.format(" %s: $%,.2f (%d seats)", playFor(perf).getName(), (double)amountFor(perf, playFor(perf)) / 100, perf.getAudience())).append("\n");
-			totalAmount += amountFor(perf, playFor(perf));
+			result.append(String.format(" %s: $%,.2f (%d seats)", playFor(perf).getName(), (double)amountFor(perf) / 100, perf.getAudience())).append("\n");
+			totalAmount += amountFor(perf);
 		}
 
 		result.append(String.format("Amount owed is $%,.2f", (double)totalAmount / 100)).append("\n");
@@ -37,9 +37,9 @@ public class Theater {
 		return plays.get(aPerformance.getPlayId());
 	}
 
-	private int amountFor(Performance aPerformance, Play play) {
+	private int amountFor(Performance aPerformance) {
 		int result;
-		switch (play.getType()) {
+		switch (playFor(aPerformance).getType()) {
 			case "tragedy":
 				result = 40000;
 				if (aPerformance.getAudience() > 30) {
@@ -54,7 +54,7 @@ public class Theater {
 				result += 300 * aPerformance.getAudience();
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown type: " + play.getType());
+				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
 		}
 		return result;
 	}
