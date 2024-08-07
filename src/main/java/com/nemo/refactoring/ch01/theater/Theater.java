@@ -12,6 +12,10 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
+		return renderPlainText(invoice);
+	}
+
+	private String renderPlainText(Invoice invoice) {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 		for(Performance perf : invoice.getPerformances()){
 			// print line for this order
