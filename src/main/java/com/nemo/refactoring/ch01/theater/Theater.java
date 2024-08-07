@@ -1,5 +1,6 @@
 package com.nemo.refactoring.ch01.theater;
 
+import java.util.List;
 import java.util.Map;
 
 public class Theater {
@@ -19,23 +20,11 @@ public class Theater {
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
 		}
-		int volumeCredits = 0;
-		for (Performance perf : invoice.getPerformances()){
-			volumeCredits += volumeCreditsFor(perf);
-		}
+		int volumeCredits = totalVolumeCredits(invoice.getPerformances());
 
 		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
 		result.append(String.format("You earned %d credits", volumeCredits)).append("\n");
 		return result.toString();
-	}
-
-	private int volumeCreditsFor(Performance perf) {
-		int result;
-		result = Math.max(perf.getAudience() - 30, 0);
-		if ("comedy".equals(playFor(perf).getType())) {
-			result += (int)Math.floor((double)perf.getAudience() / 5);
-		}
-		return result;
 	}
 
 	private Play playFor(Performance aPerformance) {
@@ -60,6 +49,23 @@ public class Theater {
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
+		}
+		return result;
+	}
+
+	private int totalVolumeCredits(List<Performance> performances) {
+		int volumeCredits = 0;
+		for (Performance perf : performances){
+			volumeCredits += volumeCreditsFor(perf);
+		}
+		return volumeCredits;
+	}
+
+	private int volumeCreditsFor(Performance perf) {
+		int result;
+		result = Math.max(perf.getAudience() - 30, 0);
+		if ("comedy".equals(playFor(perf).getType())) {
+			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
 		return result;
 	}
