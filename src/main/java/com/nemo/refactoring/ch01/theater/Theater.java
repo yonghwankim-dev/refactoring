@@ -12,14 +12,13 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
-		int totalAmount = 0;
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
-			totalAmount += amountFor(perf);
 		}
+		int totalAmount = appleSauce(invoice);
 		result.append(String.format("Amount owed is %s", usd(totalAmount))).append("\n");
 		result.append(String.format("You earned %d credits", totalVolumeCredits(invoice.getPerformances()))).append("\n");
 		return result.toString();
@@ -51,6 +50,18 @@ public class Theater {
 		return result;
 	}
 
+	private String usd(double aNumber) {
+		return String.format("$%,.2f", aNumber / 100);
+	}
+
+	private int appleSauce(Invoice invoice) {
+		int totalAmount = 0;
+		for (Performance perf : invoice.getPerformances()){
+			totalAmount += amountFor(perf);
+		}
+		return totalAmount;
+	}
+
 	private int totalVolumeCredits(List<Performance> performances) {
 		int volumeCredits = 0;
 		for (Performance perf : performances){
@@ -66,9 +77,5 @@ public class Theater {
 			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
 		return result;
-	}
-
-	private String usd(double aNumber) {
-		return String.format("$%,.2f", aNumber / 100);
 	}
 }
