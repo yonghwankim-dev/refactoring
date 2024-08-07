@@ -12,7 +12,6 @@ public class Theater {
 
 	public String statement(Invoice invoice) {
 		int totalAmount = 0;
-		int volumeCredits = 0;
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
 
 		for(Performance perf : invoice.getPerformances()){
@@ -20,6 +19,7 @@ public class Theater {
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 			totalAmount += amountFor(perf);
 		}
+		int volumeCredits = 0;
 		for (Performance perf : invoice.getPerformances()){
 			volumeCredits += volumeCreditsFor(perf);
 		}
