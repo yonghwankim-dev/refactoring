@@ -6,16 +6,9 @@ import java.time.format.DateTimeFormatter;
 public class Owing {
 
 	public String statement(Invoice invoice){
-		int outstanding = 0;
 		StringBuilder builder = new StringBuilder();
 		builder.append(banner());
-
-		// calculate outstanding
-		for (Order order : invoice.getOrders()) {
-			outstanding += order.getAmount();
-		}
-
-		// store detailed owing information
+		final int outstanding = calculateOutstanding(invoice);
 		builder.append(detailed(invoice, outstanding));
 		return builder.toString();
 	}
@@ -27,6 +20,14 @@ public class Owing {
 			************************
 
 			""";
+	}
+
+	private int calculateOutstanding(Invoice invoice) {
+		int result = 0;
+		for (Order order : invoice.getOrders()) {
+			result += order.getAmount();
+		}
+		return result;
 	}
 
 	private String detailed(Invoice invoice, int outstanding) {
