@@ -2,6 +2,8 @@ package com.nemo.refactoring.ch06.class01;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,8 +14,9 @@ class OwingTest {
 	@Test
 	void statement(){
 	    // given
+		List<Order> orders = List.of(new Order(600), new Order(400));
+		Invoice invoice = new Invoice(orders);
 		Owing owing = new Owing();
-		Invoice invoice = new Invoice();
 		// when
 		String statement = owing.statement(invoice);
 		// then
