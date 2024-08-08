@@ -12,17 +12,18 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
-		return renderPlainText(invoice);
+		Statement statement = new Statement(invoice.getCustomer(), invoice.getPerformances());
+		return renderPlainText(statement);
 	}
 
-	private String renderPlainText(Invoice invoice) {
-		StringBuilder result = new StringBuilder(String.format("Statement for %s", invoice.getCustomer())).append("\n");
-		for(Performance perf : invoice.getPerformances()){
+	private String renderPlainText(Statement statement) {
+		StringBuilder result = new StringBuilder(String.format("Statement for %s", statement.getCustomer())).append("\n");
+		for(Performance perf : statement.getPerformances()){
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 		}
-		result.append(String.format("Amount owed is %s", usd(totalAmount(invoice)))).append("\n");
-		result.append(String.format("You earned %d credits", totalVolumeCredits(invoice.getPerformances()))).append("\n");
+		result.append(String.format("Amount owed is %s", usd(totalAmount(statement.getPerformances())))).append("\n");
+		result.append(String.format("You earned %d credits", totalVolumeCredits(statement.getPerformances()))).append("\n");
 		return result.toString();
 	}
 
@@ -56,9 +57,9 @@ public class Theater {
 		return String.format("$%,.2f", aNumber / 100);
 	}
 
-	private int totalAmount(Invoice invoice) {
+	private int totalAmount(List<Performance> performances) {
 		int result = 0;
-		for (Performance perf : invoice.getPerformances()){
+		for (Performance perf : performances){
 			result += amountFor(perf);
 		}
 		return result;
