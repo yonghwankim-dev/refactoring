@@ -7,11 +7,15 @@ public class EnrichPerformance {
 	private final int volumeCredits;
 
 	public EnrichPerformance(Performance performance, Play play) {
-		PerformanceCalculator calculator = new PerformanceCalculator(performance, play);
+		PerformanceCalculator calculator = createPerformanceCalculator(performance, play);
 		this.performance = performance;
 		this.play = play;
 		this.amount = calculator.amount();
 		this.volumeCredits = calculator.volumeCreditsFor();
+	}
+
+	private PerformanceCalculator createPerformanceCalculator(Performance performance, Play play) {
+		return new PerformanceCalculator(performance, play);
 	}
 
 	public Play getPlay() {
