@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Statement {
 	private final String customer;
-	private final List<Performance> performances;
+	private final List<EnrichPerformance> performances;
 
-	public Statement(String customer, List<Performance> performances) {
+	public Statement(String customer, List<EnrichPerformance> performances) {
 		this.customer = customer;
 		this.performances = performances;
 	}
@@ -15,7 +15,7 @@ public class Statement {
 		return customer;
 	}
 
-	public List<Performance> getPerformances() {
+	public List<EnrichPerformance> getPerformances() {
 		return performances;
 	}
 }

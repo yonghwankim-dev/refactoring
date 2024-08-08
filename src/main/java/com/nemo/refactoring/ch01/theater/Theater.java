@@ -2,6 +2,7 @@ package com.nemo.refactoring.ch01.theater;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 public class Theater {
 
@@ -12,13 +13,19 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
-		Statement statement = new Statement(invoice.getCustomer(), invoice.getPerformances());
+		Statement statement = new Statement(
+			invoice.getCustomer(),
+			invoice.getPerformances().stream().map(enrichPerformance()).toList());
 		return renderPlainText(statement);
+	}
+
+	private Function<Performance, EnrichPerformance> enrichPerformance() {
+		return EnrichPerformance::new;
 	}
 
 	private String renderPlainText(Statement statement) {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", statement.getCustomer())).append("\n");
-		for(Performance perf : statement.getPerformances()){
+		for(EnrichPerformance perf : statement.getPerformances()){
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 		}
@@ -27,11 +34,11 @@ public class Theater {
 		return result.toString();
 	}
 
-	private Play playFor(Performance aPerformance) {
+	private Play playFor(EnrichPerformance aPerformance) {
 		return plays.get(aPerformance.getPlayId());
 	}
 
-	private int amountFor(Performance aPerformance) {
+	private int amountFor(EnrichPerformance aPerformance) {
 		int result;
 		switch (playFor(aPerformance).getType()) {
 			case "tragedy":
@@ -57,23 +64,23 @@ public class Theater {
 		return String.format("$%,.2f", aNumber / 100);
 	}
 
-	private int totalAmount(List<Performance> performances) {
+	private int totalAmount(List<EnrichPerformance> performances) {
 		int result = 0;
-		for (Performance perf : performances){
+		for (EnrichPerformance perf : performances){
 			result += amountFor(perf);
 		}
 		return result;
 	}
 
-	private int totalVolumeCredits(List<Performance> performances) {
+	private int totalVolumeCredits(List<EnrichPerformance> performances) {
 		int result = 0;
-		for (Performance perf : performances){
+		for (EnrichPerformance perf : performances){
 			result += volumeCreditsFor(perf);
 		}
 		return result;
 	}
 
-	private int volumeCreditsFor(Performance perf) {
+	private int volumeCreditsFor(EnrichPerformance perf) {
 		int result;
 		result = Math.max(perf.getAudience() - 30, 0);
 		if ("comedy".equals(playFor(perf).getType())) {
