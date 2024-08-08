@@ -27,15 +27,11 @@ public class Theater {
 		StringBuilder result = new StringBuilder(String.format("Statement for %s", statement.getCustomer())).append("\n");
 		for(EnrichPerformance perf : statement.getPerformances()){
 			// print line for this order
-			result.append(String.format(" %s: %s (%d seats)", playFor(perf).getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
+			result.append(String.format(" %s: %s (%d seats)", perf.getPlay().getName(), usd(amountFor(perf)), perf.getAudience())).append("\n");
 		}
 		result.append(String.format("Amount owed is %s", usd(totalAmount(statement.getPerformances())))).append("\n");
 		result.append(String.format("You earned %d credits", totalVolumeCredits(statement.getPerformances()))).append("\n");
 		return result.toString();
-	}
-
-	private Play playFor(EnrichPerformance aPerformance) {
-		return plays.get(aPerformance.getPlayId());
 	}
 
 	private Play playFor(Performance aPerformance) {
@@ -44,7 +40,7 @@ public class Theater {
 
 	private int amountFor(EnrichPerformance aPerformance) {
 		int result;
-		switch (playFor(aPerformance).getType()) {
+		switch (aPerformance.getPlay().getType()) {
 			case "tragedy":
 				result = 40000;
 				if (aPerformance.getAudience() > 30) {
@@ -59,7 +55,7 @@ public class Theater {
 				result += 300 * aPerformance.getAudience();
 				break;
 			default:
-				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
+				throw new IllegalArgumentException("Unknown type: " + aPerformance.getPlay().getType());
 		}
 		return result;
 	}
@@ -87,7 +83,7 @@ public class Theater {
 	private int volumeCreditsFor(EnrichPerformance perf) {
 		int result;
 		result = Math.max(perf.getAudience() - 30, 0);
-		if ("comedy".equals(playFor(perf).getType())) {
+		if ("comedy".equals(perf.getPlay().getType())) {
 			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
 		return result;
