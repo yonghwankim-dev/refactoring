@@ -13,11 +13,10 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
-		Statement statement = new Statement(
-			invoice.getCustomer(),
-			invoice.getPerformances().stream()
-				.map(enrichPerformance())
-				.toList());
+		List<EnrichPerformance> performances = invoice.getPerformances().stream()
+			.map(enrichPerformance())
+			.toList();
+		Statement statement = new Statement(invoice.getCustomer(), performances, totalAmount(performances), totalVolumeCredits(performances));
 		return renderPlainText(statement);
 	}
 
@@ -35,8 +34,8 @@ public class Theater {
 			// print line for this order
 			result.append(String.format(" %s: %s (%d seats)", perf.getPlay().getName(), usd(perf.getAmount()), perf.getAudience())).append("\n");
 		}
-		result.append(String.format("Amount owed is %s", usd(totalAmount(statement.getPerformances())))).append("\n");
-		result.append(String.format("You earned %d credits", totalVolumeCredits(statement.getPerformances()))).append("\n");
+		result.append(String.format("Amount owed is %s", usd(statement.getTotalAmount()))).append("\n");
+		result.append(String.format("You earned %d credits", statement.getTotalVolumeCredits())).append("\n");
 		return result.toString();
 	}
 
