@@ -1,6 +1,7 @@
 package com.nemo.refactoring.ch06.class01;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -8,6 +9,8 @@ import java.util.List;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.mockito.BDDMockito;
+import org.mockito.Mockito;
 
 class OwingTest {
 
@@ -17,9 +20,11 @@ class OwingTest {
 	    // given
 		String customer = "BigCo";
 		List<Order> orders = List.of(new Order(600), new Order(400));
-		LocalDate dueDate = LocalDate.of(2024, 12, 31);
-		Invoice invoice = new Invoice(customer, orders, dueDate);
-		Owing owing = new Owing();
+		Invoice invoice = new Invoice(customer, orders);
+		LocalDateFactory factory = Mockito.mock(LocalDateFactory.class);
+		Owing owing = new Owing(factory);
+
+		given(factory.now()).willReturn(LocalDate.of(2024, 12, 1));
 		// when
 		String statement = owing.statement(invoice);
 		// then

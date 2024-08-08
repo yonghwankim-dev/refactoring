@@ -5,6 +5,12 @@ import java.time.format.DateTimeFormatter;
 
 public class Owing {
 
+	private final LocalDateFactory factory;
+
+	public Owing(LocalDateFactory factory) {
+		this.factory = factory;
+	}
+
 	public String statement(Invoice invoice){
 		int outstanding = 0;
 		StringBuilder builder = new StringBuilder();
@@ -18,10 +24,12 @@ public class Owing {
 		}
 
 		// record due date
+		LocalDate dueDate = factory.now().plusDays(30);
+
 		// store detailed owing information
 		builder.append("customer: ").append(invoice.getCustomer()).append("\n");
 		builder.append("amount: ").append(usd(outstanding)).append("\n");
-		builder.append("due date: ").append(isoLocal(invoice.getDueDate())).append("\n");
+		builder.append("due date: ").append(isoLocal(dueDate)).append("\n");
 		return builder.toString();
 	}
 
