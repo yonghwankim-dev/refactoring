@@ -26,4 +26,13 @@ public class Theater {
 	private String usd(double aNumber) {
 		return String.format("$%,.2f", aNumber / 100);
 	}
+
+	public String htmlStatement(Invoice invoice, Map<String, Play> plays) {
+		return renderHtml(createStatementData(invoice, plays));
+	}
+
+	private String renderHtml(Statement statement) {
+		StringBuilder builder = new StringBuilder();
+		return null;
+	}
 }
