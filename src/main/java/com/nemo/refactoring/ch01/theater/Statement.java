@@ -2,7 +2,6 @@ package com.nemo.refactoring.ch01.theater;
 
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 
 public class Statement {
 	private final Map<String, Play> plays;
@@ -15,14 +14,14 @@ public class Statement {
 		this.plays = plays;
 		this.customer = invoice.getCustomer();
 		this.performances = invoice.getPerformances().stream()
-			.map(enrichPerformance())
+			.map(this::enrichPerformance)
 			.toList();
 		this.totalAmount = totalAmount(performances);
 		this.totalVolumeCredits = totalVolumeCredits(performances);
 	}
 
-	private Function<Performance, EnrichPerformance> enrichPerformance() {
-		return performance -> new EnrichPerformance(performance, playFor(performance), amountFor(performance), volumeCreditsFor(performance));
+	private EnrichPerformance enrichPerformance(Performance performance) {
+		return new EnrichPerformance(performance, playFor(performance), amountFor(performance), volumeCreditsFor(performance));
 	}
 
 	private Play playFor(Performance aPerformance) {
