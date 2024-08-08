@@ -4,11 +4,13 @@ public class EnrichPerformance {
 	private final Performance performance;
 	private final Play play;
 	private final int amount;
+	private final int volumeCredits;
 
-	public EnrichPerformance(Performance performance, Play play, int amount) {
+	public EnrichPerformance(Performance performance, Play play, int amount, int volumeCredits) {
 		this.performance = performance;
 		this.play = play;
 		this.amount = amount;
+		this.volumeCredits = volumeCredits;
 	}
 
 	public Play getPlay() {
@@ -21,5 +23,9 @@ public class EnrichPerformance {
 
 	public int getAmount() {
 		return amount;
+	}
+
+	public int getVolumeCredits() {
+		return volumeCredits;
 	}
 }

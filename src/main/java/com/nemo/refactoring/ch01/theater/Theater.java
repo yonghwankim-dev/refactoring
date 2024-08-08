@@ -22,7 +22,7 @@ public class Theater {
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
-		return performance -> new EnrichPerformance(performance, playFor(performance), amountFor(performance));
+		return performance -> new EnrichPerformance(performance, playFor(performance), amountFor(performance), volumeCreditsFor(performance));
 	}
 
 	private Play playFor(Performance aPerformance) {
@@ -77,15 +77,15 @@ public class Theater {
 	private int totalVolumeCredits(List<EnrichPerformance> performances) {
 		int result = 0;
 		for (EnrichPerformance perf : performances){
-			result += volumeCreditsFor(perf);
+			result += perf.getVolumeCredits();
 		}
 		return result;
 	}
 
-	private int volumeCreditsFor(EnrichPerformance perf) {
+	private int volumeCreditsFor(Performance perf) {
 		int result;
 		result = Math.max(perf.getAudience() - 30, 0);
-		if ("comedy".equals(perf.getPlay().getType())) {
+		if ("comedy".equals(playFor(perf).getType())) {
 			result += (int)Math.floor((double)perf.getAudience() / 5);
 		}
 		return result;
