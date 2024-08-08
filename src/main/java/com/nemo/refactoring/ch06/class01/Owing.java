@@ -27,16 +27,22 @@ public class Owing {
 	}
 
 	private String banner() {
-		return "************************" + "\n"
-			+ "**** customer owing ****" + "\n"
-			+ "************************" + "\n" + "\n";
+		return """
+			************************
+			**** customer owing ****
+			************************
+
+			""";
 	}
 
 	private String detailed(Invoice invoice, int outstanding) {
-		LocalDate dueDate = factory.now().plusDays(30);
 		return "customer: " + invoice.getCustomer() + "\n"
 			+ "amount: " + usd(outstanding) + "\n"
-			+ "due date: " + isoLocal(dueDate) + "\n";
+			+ "due date: " + isoLocal(recordDueDate()) + "\n";
+	}
+
+	private LocalDate recordDueDate() {
+		return factory.now().plusDays(30);
 	}
 
 	private String usd(double value) {
