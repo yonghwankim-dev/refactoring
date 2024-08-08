@@ -33,6 +33,19 @@ public class Theater {
 
 	private String renderHtml(Statement statement) {
 		StringBuilder builder = new StringBuilder();
-		return null;
+		builder.append("<h1>Statement for ").append(statement.getCustomer()).append("</h1>").append("\n")
+			.append("<table>").append("\n")
+			.append("<tr><th>Play</th><th>Cost</th><th>Seats</th></tr>").append("\n");
+		for (EnrichPerformance perf : statement.getPerformances()) {
+			builder.append("<tr><td>")
+				.append(perf.getPlay().getName()).append("</td><td>")
+				.append(usd(perf.getAmount())).append("</td><td>")
+				.append(perf.getAudience()).append("</td></tr>")
+				.append("\n");
+		}
+		builder.append("</table>").append("\n")
+			.append("<p>Amount owed is <em>").append(usd(statement.getTotalAmount())).append("</em></p>").append("\n")
+			.append("<p>You earned <em>").append(statement.getTotalVolumeCredits()).append("</em> credits</p>").append("\n");
+		return builder.toString();
 	}
 }
