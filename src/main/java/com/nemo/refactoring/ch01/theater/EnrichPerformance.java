@@ -15,7 +15,11 @@ public class EnrichPerformance {
 	}
 
 	private PerformanceCalculator createPerformanceCalculator(Performance performance, Play play) {
-		return new PerformanceCalculator(performance, play);
+		return switch (play.getType()) {
+			case "tragedy" -> new TragedyCalculator(performance, play);
+			case "comedy" -> new ComedyCalculator(performance, play);
+			default -> throw new IllegalArgumentException("Unknown type: " + play.getType());
+		};
 	}
 
 	public Play getPlay() {
