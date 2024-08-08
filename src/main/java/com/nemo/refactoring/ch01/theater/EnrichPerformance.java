@@ -18,4 +18,8 @@ public class EnrichPerformance {
 	public int getAudience() {
 		return performance.getAudience();
 	}
+
+	public int getAmount() {
+		return amount;
+	}
 }
