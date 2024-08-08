@@ -13,11 +13,7 @@ public class PerformanceCalculator {
 		int result;
 		switch (this.play.getType()) {
 			case "tragedy":
-				result = 40000;
-				if (performance.getAudience() > 30) {
-					result += 1000 * (performance.getAudience() - 30);
-				}
-				break;
+				throw new UnsupportedOperationException("Please use TragedyCalculator for the tragedy performance fee");
 			case "comedy":
 				result = 30000;
 				if (performance.getAudience() > 20) {
@@ -38,5 +34,9 @@ public class PerformanceCalculator {
 			result += (int)Math.floor((double)performance.getAudience() / 5);
 		}
 		return result;
+	}
+
+	public Performance getPerformance() {
+		return performance;
 	}
 }
