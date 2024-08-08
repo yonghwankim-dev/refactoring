@@ -21,33 +21,11 @@ public class Statement {
 	}
 
 	private EnrichPerformance enrichPerformance(Performance performance) {
-		return new EnrichPerformance(performance, playFor(performance), amountFor(performance), volumeCreditsFor(performance));
+		return new EnrichPerformance(performance, playFor(performance), volumeCreditsFor(performance));
 	}
 
 	private Play playFor(Performance aPerformance) {
 		return plays.get(aPerformance.getPlayId());
-	}
-
-	private int amountFor(Performance aPerformance) {
-		int result;
-		switch (playFor(aPerformance).getType()) {
-			case "tragedy":
-				result = 40000;
-				if (aPerformance.getAudience() > 30) {
-					result += 1000 * (aPerformance.getAudience() - 30);
-				}
-				break;
-			case "comedy":
-				result = 30000;
-				if (aPerformance.getAudience() > 20) {
-					result += 10000 + 500 * (aPerformance.getAudience() - 20);
-				}
-				result += 300 * aPerformance.getAudience();
-				break;
-			default:
-				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
-		}
-		return result;
 	}
 
 	private int volumeCreditsFor(Performance perf) {
