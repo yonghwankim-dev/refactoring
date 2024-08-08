@@ -25,9 +25,7 @@ public class Owing {
 		LocalDate dueDate = factory.now().plusDays(30);
 
 		// store detailed owing information
-		builder.append("customer: ").append(invoice.getCustomer()).append("\n");
-		builder.append("amount: ").append(usd(outstanding)).append("\n");
-		builder.append("due date: ").append(isoLocal(dueDate)).append("\n");
+		builder.append(detailed(invoice, outstanding, dueDate));
 		return builder.toString();
 	}
 
@@ -35,6 +33,12 @@ public class Owing {
 		return "************************" + "\n"
 			+ "**** customer owing ****" + "\n"
 			+ "************************" + "\n" + "\n";
+	}
+
+	private String detailed(Invoice invoice, int outstanding, LocalDate dueDate) {
+		return "customer: " + invoice.getCustomer() + "\n"
+			+ "amount: " + usd(outstanding) + "\n"
+			+ "due date: " + isoLocal(dueDate) + "\n";
 	}
 
 	private String usd(double value) {
