@@ -1,6 +1,6 @@
 package com.nemo.refactoring.ch01.theater;
 
-public class PerformanceCalculator {
+public abstract class PerformanceCalculator {
 	private final Performance performance;
 	private final Play play;
 
@@ -9,23 +9,7 @@ public class PerformanceCalculator {
 		this.play = play;
 	}
 
-	public int amount() {
-		int result;
-		switch (this.play.getType()) {
-			case "tragedy":
-				throw new UnsupportedOperationException("Please use TragedyCalculator for the tragedy performance fee");
-			case "comedy":
-				result = 30000;
-				if (performance.getAudience() > 20) {
-					result += 10000 + 500 * (performance.getAudience() - 20);
-				}
-				result += 300 * performance.getAudience();
-				break;
-			default:
-				throw new IllegalArgumentException("Unknown type: " + play.getType());
-		}
-		return result;
-	}
+	public abstract int amount();
 
 	public int volumeCreditsFor() {
 		int result;
