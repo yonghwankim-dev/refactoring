@@ -15,12 +15,18 @@ public class Theater {
 	public String statement(Invoice invoice) {
 		Statement statement = new Statement(
 			invoice.getCustomer(),
-			invoice.getPerformances().stream().map(enrichPerformance()).toList());
+			invoice.getPerformances().stream()
+				.map(enrichPerformance())
+				.toList());
 		return renderPlainText(statement);
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
 		return performance -> new EnrichPerformance(performance, playFor(performance));
+	}
+
+	private Play playFor(Performance aPerformance) {
+		return plays.get(aPerformance.getPlayId());
 	}
 
 	private String renderPlainText(Statement statement) {
@@ -32,10 +38,6 @@ public class Theater {
 		result.append(String.format("Amount owed is %s", usd(totalAmount(statement.getPerformances())))).append("\n");
 		result.append(String.format("You earned %d credits", totalVolumeCredits(statement.getPerformances()))).append("\n");
 		return result.toString();
-	}
-
-	private Play playFor(Performance aPerformance) {
-		return plays.get(aPerformance.getPlayId());
 	}
 
 	private int amountFor(EnrichPerformance aPerformance) {

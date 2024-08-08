@@ -13,10 +13,6 @@ public class EnrichPerformance {
 		return play;
 	}
 
-	public String getPlayId() {
-		return performance.getPlayId();
-	}
-
 	public int getAudience() {
 		return performance.getAudience();
 	}
