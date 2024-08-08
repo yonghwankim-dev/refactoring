@@ -66,19 +66,15 @@ public class Theater {
 	}
 
 	private int totalAmount(List<EnrichPerformance> performances) {
-		int result = 0;
-		for (EnrichPerformance perf : performances){
-			result += perf.getAmount();
-		}
-		return result;
+		return performances.stream()
+			.map(EnrichPerformance::getAmount)
+			.reduce(0, Integer::sum);
 	}
 
 	private int totalVolumeCredits(List<EnrichPerformance> performances) {
-		int result = 0;
-		for (EnrichPerformance perf : performances){
-			result += perf.getVolumeCredits();
-		}
-		return result;
+		return performances.stream()
+			.map(EnrichPerformance::getVolumeCredits)
+			.reduce(0, Integer::sum);
 	}
 
 	private int volumeCreditsFor(Performance perf) {
