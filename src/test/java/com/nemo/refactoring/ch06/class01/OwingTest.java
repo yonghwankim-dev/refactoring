@@ -20,11 +20,11 @@ class OwingTest {
 	    // given
 		String customer = "BigCo";
 		List<Order> orders = List.of(new Order(600), new Order(400));
-		Invoice invoice = new Invoice(customer, orders);
 		LocalDateFactory factory = Mockito.mock(LocalDateFactory.class);
-		Owing owing = new Owing(factory);
-
 		given(factory.now()).willReturn(LocalDate.of(2024, 12, 1));
+
+		Invoice invoice = new Invoice(customer, orders, factory);
+		Owing owing = new Owing();
 		// when
 		String statement = owing.statement(invoice);
 		// then

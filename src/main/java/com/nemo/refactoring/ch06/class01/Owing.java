@@ -5,12 +5,6 @@ import java.time.format.DateTimeFormatter;
 
 public class Owing {
 
-	private final LocalDateFactory factory;
-
-	public Owing(LocalDateFactory factory) {
-		this.factory = factory;
-	}
-
 	public String statement(Invoice invoice){
 		int outstanding = 0;
 		StringBuilder builder = new StringBuilder();
@@ -38,11 +32,7 @@ public class Owing {
 	private String detailed(Invoice invoice, int outstanding) {
 		return "customer: " + invoice.getCustomer() + "\n"
 			+ "amount: " + usd(outstanding) + "\n"
-			+ "due date: " + isoLocal(recordDueDate()) + "\n";
-	}
-
-	private LocalDate recordDueDate() {
-		return factory.now().plusDays(30);
+			+ "due date: " + isoLocal(invoice.getDueDate()) + "\n";
 	}
 
 	private String usd(double value) {
