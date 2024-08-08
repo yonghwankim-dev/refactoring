@@ -13,11 +13,14 @@ public class Theater {
 	}
 
 	public String statement(Invoice invoice) {
+		return renderPlainText(createStatementData(invoice));
+	}
+
+	private Statement createStatementData(Invoice invoice) {
 		List<EnrichPerformance> performances = invoice.getPerformances().stream()
 			.map(enrichPerformance())
 			.toList();
-		Statement statement = new Statement(invoice.getCustomer(), performances, totalAmount(performances), totalVolumeCredits(performances));
-		return renderPlainText(statement);
+		return new Statement(invoice.getCustomer(), performances, totalAmount(performances), totalVolumeCredits(performances));
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
