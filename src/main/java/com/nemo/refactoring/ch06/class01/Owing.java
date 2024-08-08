@@ -14,9 +14,7 @@ public class Owing {
 	public String statement(Invoice invoice){
 		int outstanding = 0;
 		StringBuilder builder = new StringBuilder();
-		builder.append("************************").append("\n");
-		builder.append("**** customer owing ****").append("\n");
-		builder.append("************************").append("\n").append("\n");
+		builder.append(banner());
 
 		// calculate outstanding
 		for (Order order : invoice.getOrders()) {
@@ -31,6 +29,12 @@ public class Owing {
 		builder.append("amount: ").append(usd(outstanding)).append("\n");
 		builder.append("due date: ").append(isoLocal(dueDate)).append("\n");
 		return builder.toString();
+	}
+
+	private String banner() {
+		return "************************" + "\n"
+			+ "**** customer owing ****" + "\n"
+			+ "************************" + "\n" + "\n";
 	}
 
 	private String usd(double value) {
