@@ -14,8 +14,9 @@ class OwingTest {
 	@Test
 	void statement(){
 	    // given
+		String customer = "BigCo";
 		List<Order> orders = List.of(new Order(600), new Order(400));
-		Invoice invoice = new Invoice(orders);
+		Invoice invoice = new Invoice(customer, orders);
 		Owing owing = new Owing();
 		// when
 		String statement = owing.statement(invoice);
