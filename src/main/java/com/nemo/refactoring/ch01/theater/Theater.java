@@ -22,7 +22,7 @@ public class Theater {
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
-		return performance -> new EnrichPerformance(performance, playFor(performance));
+		return performance -> new EnrichPerformance(performance, playFor(performance), amountFor(performance));
 	}
 
 	private Play playFor(Performance aPerformance) {
@@ -58,6 +58,28 @@ public class Theater {
 				break;
 			default:
 				throw new IllegalArgumentException("Unknown type: " + aPerformance.getPlay().getType());
+		}
+		return result;
+	}
+
+	private int amountFor(Performance aPerformance) {
+		int result;
+		switch (playFor(aPerformance).getType()) {
+			case "tragedy":
+				result = 40000;
+				if (aPerformance.getAudience() > 30) {
+					result += 1000 * (aPerformance.getAudience() - 30);
+				}
+				break;
+			case "comedy":
+				result = 30000;
+				if (aPerformance.getAudience() > 20) {
+					result += 10000 + 500 * (aPerformance.getAudience() - 20);
+				}
+				result += 300 * aPerformance.getAudience();
+				break;
+			default:
+				throw new IllegalArgumentException("Unknown type: " + playFor(aPerformance).getType());
 		}
 		return result;
 	}
