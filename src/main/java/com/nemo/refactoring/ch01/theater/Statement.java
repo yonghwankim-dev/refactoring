@@ -49,6 +49,10 @@ public class Statement {
 			.reduce(0, Integer::sum);
 	}
 
+	public int amountFor(Performance performance){
+		return new PerformanceCalculator(performance, playFor(performance)).amount();
+	}
+
 	public String getCustomer() {
 		return customer;
 	}
