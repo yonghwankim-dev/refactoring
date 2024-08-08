@@ -20,7 +20,7 @@ public class Theater {
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
-		return EnrichPerformance::new;
+		return performance -> new EnrichPerformance(performance, playFor(performance));
 	}
 
 	private String renderPlainText(Statement statement) {
@@ -35,6 +35,10 @@ public class Theater {
 	}
 
 	private Play playFor(EnrichPerformance aPerformance) {
+		return plays.get(aPerformance.getPlayId());
+	}
+
+	private Play playFor(Performance aPerformance) {
 		return plays.get(aPerformance.getPlayId());
 	}
 
