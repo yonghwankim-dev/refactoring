@@ -11,7 +11,7 @@ public abstract class PerformanceCalculator {
 
 	public abstract int amount();
 
-	public int volumeCreditsFor() {
+	public int volumeCredits() {
 		int result;
 		result = Math.max(performance.getAudience() - 30, 0);
 		if ("comedy".equals(play.getType())) {

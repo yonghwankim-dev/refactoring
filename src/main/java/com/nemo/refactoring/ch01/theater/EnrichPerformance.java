@@ -11,7 +11,7 @@ public class EnrichPerformance {
 		this.performance = performance;
 		this.play = play;
 		this.amount = calculator.amount();
-		this.volumeCredits = calculator.volumeCreditsFor();
+		this.volumeCredits = calculator.volumeCredits();
 	}
 
 	private PerformanceCalculator createPerformanceCalculator(Performance performance, Play play) {
