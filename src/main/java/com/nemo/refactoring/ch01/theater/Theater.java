@@ -20,7 +20,7 @@ public class Theater {
 		List<EnrichPerformance> performances = invoice.getPerformances().stream()
 			.map(enrichPerformance())
 			.toList();
-		return new Statement(invoice.getCustomer(), performances, totalAmount(performances), totalVolumeCredits(performances));
+		return new Statement(invoice.getCustomer(), performances);
 	}
 
 	private Function<Performance, EnrichPerformance> enrichPerformance() {
@@ -66,18 +66,6 @@ public class Theater {
 
 	private String usd(double aNumber) {
 		return String.format("$%,.2f", aNumber / 100);
-	}
-
-	private int totalAmount(List<EnrichPerformance> performances) {
-		return performances.stream()
-			.map(EnrichPerformance::getAmount)
-			.reduce(0, Integer::sum);
-	}
-
-	private int totalVolumeCredits(List<EnrichPerformance> performances) {
-		return performances.stream()
-			.map(EnrichPerformance::getVolumeCredits)
-			.reduce(0, Integer::sum);
 	}
 
 	private int volumeCreditsFor(Performance perf) {
