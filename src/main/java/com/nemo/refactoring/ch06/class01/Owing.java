@@ -18,8 +18,12 @@ public class Owing {
 		// record due date
 		// store detailed owing information
 		builder.append("customer: ").append(invoice.getCustomer()).append("\n");
-		builder.append("amount: $1,000.00").append("\n");
+		builder.append("amount: ").append(usd(outstanding)).append("\n");
 		builder.append("due date: 2024-12-31").append("\n");
 		return builder.toString();
+	}
+
+	private String usd(double value) {
+		return String.format("$%,.2f", value);
 	}
 }
