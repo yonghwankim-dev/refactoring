@@ -6,12 +6,12 @@ public class EnrichPerformance {
 	private final int amount;
 	private final int volumeCredits;
 
-	public EnrichPerformance(Performance performance, Play play, int volumeCredits) {
+	public EnrichPerformance(Performance performance, Play play) {
 		PerformanceCalculator calculator = new PerformanceCalculator(performance, play);
 		this.performance = performance;
 		this.play = play;
 		this.amount = calculator.amount();
-		this.volumeCredits = volumeCredits;
+		this.volumeCredits = calculator.volumeCreditsFor();
 	}
 
 	public Play getPlay() {

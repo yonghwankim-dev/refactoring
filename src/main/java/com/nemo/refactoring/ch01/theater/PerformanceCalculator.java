@@ -30,4 +30,13 @@ public class PerformanceCalculator {
 		}
 		return result;
 	}
+
+	public int volumeCreditsFor() {
+		int result;
+		result = Math.max(performance.getAudience() - 30, 0);
+		if ("comedy".equals(play.getType())) {
+			result += (int)Math.floor((double)performance.getAudience() / 5);
+		}
+		return result;
+	}
 }
