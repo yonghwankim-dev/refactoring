@@ -21,11 +21,8 @@ public class Owing {
 			outstanding += order.getAmount();
 		}
 
-		// record due date
-		LocalDate dueDate = factory.now().plusDays(30);
-
 		// store detailed owing information
-		builder.append(detailed(invoice, outstanding, dueDate));
+		builder.append(detailed(invoice, outstanding));
 		return builder.toString();
 	}
 
@@ -35,7 +32,8 @@ public class Owing {
 			+ "************************" + "\n" + "\n";
 	}
 
-	private String detailed(Invoice invoice, int outstanding, LocalDate dueDate) {
+	private String detailed(Invoice invoice, int outstanding) {
+		LocalDate dueDate = factory.now().plusDays(30);
 		return "customer: " + invoice.getCustomer() + "\n"
 			+ "amount: " + usd(outstanding) + "\n"
 			+ "due date: " + isoLocal(dueDate) + "\n";
