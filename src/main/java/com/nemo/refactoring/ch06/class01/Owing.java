@@ -19,7 +19,7 @@ public class Owing {
 		// store detailed owing information
 		builder.append("customer: ").append(invoice.getCustomer()).append("\n");
 		builder.append("amount: ").append(usd(outstanding)).append("\n");
-		builder.append("due date: 2024-12-31").append("\n");
+		builder.append("due date: ").append(invoice.getDueDate()).append("\n");
 		return builder.toString();
 	}
 

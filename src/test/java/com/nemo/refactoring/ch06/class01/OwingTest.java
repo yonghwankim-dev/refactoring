@@ -2,6 +2,7 @@ package com.nemo.refactoring.ch06.class01;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -16,7 +17,8 @@ class OwingTest {
 	    // given
 		String customer = "BigCo";
 		List<Order> orders = List.of(new Order(600), new Order(400));
-		Invoice invoice = new Invoice(customer, orders);
+		LocalDate dueDate = LocalDate.of(2024, 12, 31);
+		Invoice invoice = new Invoice(customer, orders, dueDate);
 		Owing owing = new Owing();
 		// when
 		String statement = owing.statement(invoice);
