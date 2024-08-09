@@ -13,9 +13,9 @@ public class Reservation {
 	private Queue<Customer> firstServedReservations = new LinkedList<>();
 	private Queue<Customer> priorityReservations = new PriorityQueue<>();
 
-	public void addReservation(Customer customer){
-		newAddReservation(customer, false);
-	}
+	// public void addReservation(Customer customer){
+	// 	newAddReservation(customer, false);
+	// }
 
 	public void newAddReservation(Customer customer, boolean isPriority) {
 		if (isPriority){
