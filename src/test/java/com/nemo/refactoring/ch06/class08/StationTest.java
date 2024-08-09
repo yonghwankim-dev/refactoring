@@ -27,7 +27,7 @@ class StationTest {
 		Station station = new Station("Daejeon", readings);
 		NumberRange numberRange = new NumberRange(min, max);
 		// when
-		List<Temperature> temperatures = station.readingsOutsideRange(min, max, numberRange);
+		List<Temperature> temperatures = station.readingsOutsideRange(numberRange);
 		// then
 		Assertions.assertThat(temperatures)
 			.hasSize(1);
