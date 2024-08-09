@@ -19,9 +19,9 @@ class ReservationTest {
 		Customer lee = new Customer("lee");
 		Customer park = new Customer("park");
 		// when
-		reservation.addReservation(kim);
-		reservation.addReservation(lee);
-		reservation.addReservation(park);
+		reservation.newAddReservation(kim, false);
+		reservation.newAddReservation(lee, false);
+		reservation.newAddReservation(park, false);
 	    // then
 		String customerNames = reservation.getReservations().stream()
 			.map(Customer::getName)

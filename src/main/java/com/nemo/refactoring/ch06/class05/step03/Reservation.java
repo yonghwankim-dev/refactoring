@@ -17,7 +17,7 @@ public class Reservation {
 		newAddReservation(customer, false);
 	}
 
-	private void newAddReservation(Customer customer, boolean isPriority) {
+	public void newAddReservation(Customer customer, boolean isPriority) {
 		if (isPriority){
 			this.priorityReservations.add(customer);
 		}else{
