@@ -5,26 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Reading {
-	private String customer;
-	private int quantity;
-	private LocalDate time;
+	private final String customer;
+	private final int quantity;
+	private final LocalDate time;
 
 	public Reading(String customer, int quantity, LocalDate time) {
 		this.customer = customer;
 		this.quantity = quantity;
 		this.time = time;
-	}
-
-	public String getCustomer() {
-		return customer;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public LocalDate getTime() {
-		return time;
 	}
 
 	public double calculateBaseCharge() {
