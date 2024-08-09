@@ -17,8 +17,20 @@ class ReadingTest {
 		Reading reading = new Reading("kim", 10, LocalDate.of(2024, 8, 9));
 	    // when
 		// 0.18 * 10 = 1.8
-		double baseCharge = Reading.baseRate(reading.getTime().getMonthValue(), reading.getTime().getYear()) * reading.getQuantity();
+		double baseCharge = Reading.calculateBaseCharge(reading);
 	    // then
 		Assertions.assertThat(baseCharge).isCloseTo(1.8, Offset.offset(0.1));
+	}
+
+	@DisplayName("calculate TaxableCharge for Reading")
+	@Test
+	void calculateTaxableCharge(){
+		// given
+		Reading reading = new Reading("kim", 10, LocalDate.of(2024, 8, 9));
+		double baseCharge = Reading.calculateBaseCharge(reading);
+		// when
+		double taxableCharge = Math.max(0, baseCharge - Reading.taxThreshold(reading.getTime().getYear()));
+		// then
+		Assertions.assertThat(taxableCharge).isCloseTo(1.6, Offset.offset(0.1));
 	}
 }
