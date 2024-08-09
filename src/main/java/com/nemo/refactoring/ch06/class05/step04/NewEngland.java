@@ -10,7 +10,7 @@ public class NewEngland {
 		return newIsNewEngland(customer.getAddress().getState());
 	}
 
-	private boolean newIsNewEngland(String state) {
+	public boolean newIsNewEngland(String state) {
 		return states.contains(state);
 	}
 }
