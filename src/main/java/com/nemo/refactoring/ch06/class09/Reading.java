@@ -40,14 +40,14 @@ public class Reading {
 	}
 
 	public double calculateTaxableCharge(){
-		return Math.max(0, calculateBaseCharge() - Reading.taxThreshold(time.getYear()));
+		return Math.max(0, calculateBaseCharge() - taxThreshold());
 	}
 
-	public static double taxThreshold(int year) {
+	public double taxThreshold() {
 		Map<Integer, Double> taxMap = new HashMap<>();
 		taxMap.put(2023, 0.2);
 		taxMap.put(2024, 0.2);
 
-		return taxMap.getOrDefault(year, 0.0);
+		return taxMap.getOrDefault(time.getYear(), 0.0);
 	}
 }
