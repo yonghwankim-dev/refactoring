@@ -14,11 +14,15 @@ public class Reservation {
 	private Queue<Customer> priorityReservations = new PriorityQueue<>();
 
 	public void addReservation(Customer customer){
-		newAddReservation(customer);
+		newAddReservation(customer, false);
 	}
 
-	private void newAddReservation(Customer customer) {
-		this.firstServedReservations.add(customer);
+	private void newAddReservation(Customer customer, boolean isPriority) {
+		if (isPriority){
+			this.priorityReservations.add(customer);
+		}else{
+			this.firstServedReservations.add(customer);
+		}
 	}
 
 	public List<Customer> getReservations() {
