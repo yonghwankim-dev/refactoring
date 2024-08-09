@@ -39,8 +39,8 @@ public class Reading {
 		return baseMap.get(time.getYear())[time.getMonthValue() - 1];
 	}
 
-	public static double calculateTaxableCharge(Reading reading){
-		return Math.max(0, reading.calculateBaseCharge() - Reading.taxThreshold(reading.getTime().getYear()));
+	public double calculateTaxableCharge(){
+		return Math.max(0, calculateBaseCharge() - Reading.taxThreshold(time.getYear()));
 	}
 
 	public static double taxThreshold(int year) {

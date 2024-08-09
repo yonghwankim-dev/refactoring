@@ -28,7 +28,7 @@ class ReadingTest {
 		// given
 		Reading reading = new Reading("kim", 10, LocalDate.of(2024, 8, 9));
 		// when
-		double taxableCharge = Reading.calculateTaxableCharge(reading);
+		double taxableCharge = reading.calculateTaxableCharge();
 		// then
 		Assertions.assertThat(taxableCharge).isCloseTo(1.6, Offset.offset(0.1));
 	}
