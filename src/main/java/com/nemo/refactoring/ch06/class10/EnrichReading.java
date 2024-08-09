@@ -1,10 +1,12 @@
 package com.nemo.refactoring.ch06.class10;
 
 public class EnrichReading {
+	private String customer;
 	private double baseCharge;
 	private double taxableCharge;
 
-	public EnrichReading(double baseCharge, double taxableCharge) {
+	public EnrichReading(String customer, double baseCharge, double taxableCharge) {
+		this.customer = customer;
 		this.baseCharge = baseCharge;
 		this.taxableCharge = taxableCharge;
 	}

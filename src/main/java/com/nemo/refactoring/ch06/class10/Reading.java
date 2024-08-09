@@ -19,7 +19,7 @@ public class Reading {
 	public static EnrichReading enrichReading(String customer, int quantity, int month, int year){
 		double baseCharge = baseCharge(year, month, quantity);
 		double taxableCharge = taxableCharge(baseCharge, taxThreshold(year));
-		return new EnrichReading(baseCharge, taxableCharge);
+		return new EnrichReading(customer, baseCharge, taxableCharge);
 	}
 
 	public static double baseCharge(int year, int month, int quantity) {
