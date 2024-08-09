@@ -19,7 +19,7 @@ class NewEnglandTest {
 		NewEngland newEngland = new NewEngland();
 		// when
 		List<Customer> newEndangers = customers.stream()
-			.filter(c->newEngland.newIsNewEngland(c.getAddress().getState()))
+			.filter(c->newEngland.isNewEngland(c.getAddress().getState()))
 			.toList();
 		// then
 		Assertions.assertThat(newEndangers)
