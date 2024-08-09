@@ -16,4 +16,8 @@ public class NumberRange {
 	public int getMax() {
 		return max;
 	}
+
+	public boolean contains(int value) {
+		return value >= min && value <= max;
+	}
 }
