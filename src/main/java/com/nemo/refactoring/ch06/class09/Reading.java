@@ -31,7 +31,7 @@ public class Reading {
 		return baseRate() * quantity;
 	}
 
-	public double baseRate() {
+	private double baseRate() {
 		Map<Integer, double[]> baseMap = new HashMap<>();
 		baseMap.put(2023,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
 		baseMap.put(2024,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
