@@ -40,10 +40,10 @@ public class Reading {
 	}
 
 	public static double taxThreshold(int year) {
-		Map<Integer, Double> taxMap = new HashMap(){{
-			put(2023, 0.2);
-			put(2024, 0.2);
-		}};
+		Map<Integer, Double> taxMap = new HashMap<>();
+		taxMap.put(2023, 0.2);
+		taxMap.put(2024, 0.2);
+
 		return taxMap.getOrDefault(year, 0.0);
 	}
 }
