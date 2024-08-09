@@ -7,8 +7,7 @@ public class NewEngland {
 	private List<String> states = List.of("MA", "CT", "ME", "VT", "NH", "RI");
 
 	public boolean isNewEngland(Customer customer) {
-		String state = customer.getAddress().getState();
-		return newIsNewEngland(state);
+		return newIsNewEngland(customer.getAddress().getState());
 	}
 
 	private boolean newIsNewEngland(String state) {
