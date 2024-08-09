@@ -39,6 +39,10 @@ public class Reading {
 		return baseMap.get(time.getYear())[time.getMonthValue() - 1];
 	}
 
+	public static double calculateTaxableCharge(Reading reading){
+		return Math.max(0, reading.calculateBaseCharge() - Reading.taxThreshold(reading.getTime().getYear()));
+	}
+
 	public static double taxThreshold(int year) {
 		Map<Integer, Double> taxMap = new HashMap<>();
 		taxMap.put(2023, 0.2);
