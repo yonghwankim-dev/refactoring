@@ -1,7 +1,6 @@
 package com.nemo.refactoring.ch06.class05.step03;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -17,7 +16,7 @@ public class Reservation {
 	// 	newAddReservation(customer, false);
 	// }
 
-	public void newAddReservation(Customer customer, boolean isPriority) {
+	public void addReservation(Customer customer, boolean isPriority) {
 		if (isPriority){
 			this.priorityReservations.add(customer);
 		}else{

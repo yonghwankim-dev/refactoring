@@ -1,7 +1,5 @@
 package com.nemo.refactoring.ch06.class05.step03;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.stream.Collectors;
 
 import org.assertj.core.api.Assertions;
@@ -19,9 +17,9 @@ class ReservationTest {
 		Customer lee = new Customer("lee");
 		Customer park = new Customer("park");
 		// when
-		reservation.newAddReservation(kim, false);
-		reservation.newAddReservation(lee, false);
-		reservation.newAddReservation(park, false);
+		reservation.addReservation(kim, false);
+		reservation.addReservation(lee, false);
+		reservation.addReservation(park, false);
 	    // then
 		String customerNames = reservation.getReservations().stream()
 			.map(Customer::getName)
