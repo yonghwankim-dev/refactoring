@@ -17,16 +17,16 @@ public class Reading {
 	}
 
 	public static EnrichReading enrichReading(String customer, int quantity, int month, int year){
-		double baseCharge = 1.8;
+		double baseCharge = baseCharge(year, month, quantity);
 		double taxableCharge = 1.6;
 		return new EnrichReading(baseCharge, taxableCharge);
 	}
 
-	public double baseCharge() {
-		return baseRate() * quantity;
+	public static double baseCharge(int year, int month, int quantity) {
+		return baseRate(year, month) * quantity;
 	}
 
-	private double baseRate() {
+	private static double baseRate(int year, int month) {
 		Map<Integer, double[]> baseMap = new HashMap<>();
 		baseMap.put(2023,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
 		baseMap.put(2024,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
