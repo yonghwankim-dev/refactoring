@@ -11,7 +11,7 @@ public class Station {
 		this.readings = readings;
 	}
 
-	public List<Temperature> readingsOutsideRange(int min, int max) {
+	public List<Temperature> readingsOutsideRange(int min, int max, NumberRange range) {
 		return readings.stream()
 			.filter(t->t.getTemperature() < min || t.getTemperature() > max)
 			.toList();
