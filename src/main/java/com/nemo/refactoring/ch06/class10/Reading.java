@@ -16,6 +16,12 @@ public class Reading {
 		this.year = year;
 	}
 
+	public static EnrichReading enrichReading(String customer, int quantity, int month, int year){
+		double baseCharge = 1.8;
+		double taxableCharge = 1.6;
+		return new EnrichReading(baseCharge, taxableCharge);
+	}
+
 	public double baseCharge() {
 		return baseRate() * quantity;
 	}

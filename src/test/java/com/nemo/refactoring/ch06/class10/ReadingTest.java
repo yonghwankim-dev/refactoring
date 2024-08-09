@@ -9,12 +9,16 @@ class ReadingTest {
 
 	@DisplayName("calculate baesCharge for reading")
 	@Test
-	void baseCharge(){
+	void enrichReading(){
 	    // given
-		Reading kim = new Reading("kim", 10, 8, 2024);
+		String customer = "kim";
+		int quantity = 10;
+		int month = 8;
+		int year = 2024;
 		// when
-	    double baseCharge = kim.baseCharge();
-	    // then
-		Assertions.assertThat(baseCharge).isCloseTo(1.8, Offset.offset(0.1));
+		EnrichReading enrichReading = Reading.enrichReading(customer, quantity, month, year);
+		// then
+		Assertions.assertThat(enrichReading.getBaseCharge()).isCloseTo(1.8, Offset.offset(0.1));
+		Assertions.assertThat(enrichReading.getTaxableCharge()).isCloseTo(1.6, Offset.offset(0.1));
 	}
 }
