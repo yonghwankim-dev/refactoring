@@ -8,6 +8,10 @@ public class NewEngland {
 
 	public boolean isNewEngland(Customer customer) {
 		String state = customer.getAddress().getState();
+		return newIsNewEngland(state);
+	}
+
+	private boolean newIsNewEngland(String state) {
 		return states.contains(state);
 	}
 }
