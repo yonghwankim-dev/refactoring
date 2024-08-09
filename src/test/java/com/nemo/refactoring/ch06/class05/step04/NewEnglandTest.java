@@ -18,11 +18,11 @@ class NewEnglandTest {
 		List<Customer> customers = List.of(customer1, customer2, customer3);
 		NewEngland newEngland = new NewEngland();
 		// when
-		List<Customer> newEnglanders = customers.stream()
+		List<Customer> newEndangers = customers.stream()
 			.filter(newEngland::isNewEngland)
 			.toList();
 		// then
-		Assertions.assertThat(newEnglanders)
+		Assertions.assertThat(newEndangers)
 			.hasSize(2)
 			.extracting(Customer::getName)
 			.containsExactlyInAnyOrder("John Doe", "Smith");
