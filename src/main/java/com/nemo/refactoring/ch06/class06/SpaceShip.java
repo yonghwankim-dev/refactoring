@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch06.class05.step05;
+package com.nemo.refactoring.ch06.class06;
 
 public class SpaceShip {
 	private Owner owner;
