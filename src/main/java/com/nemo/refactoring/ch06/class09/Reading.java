@@ -27,17 +27,17 @@ public class Reading {
 		return time;
 	}
 
-	public static double baseRate(int month, int year) {
+	public double calculateBaseCharge() {
+		return baseRate(time.getMonthValue(), time.getYear()) * quantity;
+	}
+
+	public double baseRate(int month, int year) {
 		Map<Integer, double[]> baseMap = new HashMap(){{
 			put(2023,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
 			put(2024,  new double[]{0.1, 0.1, 0.12, 0.12, 0.15, 0.15, 0.18, 0.18, 0.2, 0.2, 0.22, 0.22});
 		}};
 
 		return baseMap.get(year)[month - 1];
-	}
-
-	public static double calculateBaseCharge(Reading reading) {
-		return baseRate(reading.getTime().getMonthValue(), reading.getTime().getYear()) * reading.getQuantity();
 	}
 
 	public static double taxThreshold(int year) {
