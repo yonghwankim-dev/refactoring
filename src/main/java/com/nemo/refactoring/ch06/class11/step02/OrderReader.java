@@ -3,6 +3,7 @@ package com.nemo.refactoring.ch06.class11.step02;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.stream.Stream;
 
 import org.springframework.core.io.ClassPathResource;
@@ -33,7 +34,8 @@ public class OrderReader {
 		File input = new ClassPathResource(fileName).getFile();
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
-		if (Stream.of(args).anyMatch(arg-> "-r".equals(arg))){
+		boolean onlyCountReady = Arrays.asList(args).contains("-r");
+		if (onlyCountReady){
 			return Stream.of(orders)
 				.filter(o -> "ready".equals(o.getStatus()))
 				.count();
