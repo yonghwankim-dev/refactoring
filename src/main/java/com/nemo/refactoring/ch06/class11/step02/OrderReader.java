@@ -26,13 +26,13 @@ public class OrderReader {
 			throw new RuntimeException("input the file name.");
 		}
 		CommandLine commandLine = new CommandLine();
-		String fileName = args[args.length - 1];
+		commandLine.filename = args[args.length - 1];
 		commandLine.onlyCountReady = Arrays.asList(args).contains("-r");
-		return countOrders(commandLine, fileName);
+		return countOrders(commandLine);
 	}
 
-	private long countOrders(CommandLine commandLine, String fileName) throws IOException {
-		File input = new ClassPathResource(fileName).getFile();
+	private long countOrders(CommandLine commandLine) throws IOException {
+		File input = new ClassPathResource(commandLine.filename).getFile();
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
 		if (commandLine.onlyCountReady){
@@ -45,6 +45,7 @@ public class OrderReader {
 	}
 
 	static class CommandLine {
+		private String filename;
 		private boolean onlyCountReady;
 	}
 }
