@@ -24,6 +24,7 @@ public class OrderReader {
 		if (args.length == 0) {
 			throw new RuntimeException("input the file name.");
 		}
+		CommandLine commandLine = new CommandLine();
 		String fileName = args[args.length - 1];
 		return countOrders(args, fileName);
 	}
