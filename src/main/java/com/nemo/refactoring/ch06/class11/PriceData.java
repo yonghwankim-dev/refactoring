@@ -7,4 +7,8 @@ public class PriceData {
 	public PriceData(int basePrice) {
 		this.basePrice = basePrice;
 	}
+
+	public int getBasePrice() {
+		return basePrice;
+	}
 }

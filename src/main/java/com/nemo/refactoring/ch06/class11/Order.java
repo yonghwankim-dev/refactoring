@@ -5,13 +5,13 @@ public class Order {
 		int basePrice = product.getBasePrice() * quantity;
 		int discount = (int)(Math.max(0, quantity - product.getDiscountThreshold()) * product.getBasePrice() * product.getDiscountRate());
 		PriceData priceData = new PriceData(basePrice);
-		return applyShipping(priceData, quantity, shippingMethod, basePrice, discount);
+		return applyShipping(priceData, shippingMethod, quantity, discount);
 	}
 
-	private int applyShipping(PriceData priceData, int basePrice, ShippingMethod shippingMethod, int quantity, int discount) {
-		int shippingPerCase = (basePrice > shippingMethod.getDiscountThreshold()) ? shippingMethod.getDiscountFee() : shippingMethod.getFeePerCase();
+	private int applyShipping(PriceData priceData, ShippingMethod shippingMethod, int quantity, int discount) {
+		int shippingPerCase = (priceData.getBasePrice() > shippingMethod.getDiscountThreshold()) ? shippingMethod.getDiscountFee() : shippingMethod.getFeePerCase();
 		int shippingCost = quantity * shippingPerCase;
-		return basePrice - discount + shippingCost;
+		return priceData.getBasePrice() - discount + shippingCost;
 	}
 
 	public static void main(String[] args) {
