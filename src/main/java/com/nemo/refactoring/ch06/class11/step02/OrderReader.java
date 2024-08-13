@@ -22,13 +22,18 @@ public class OrderReader {
 	}
 
 	public long run(String[] args) throws IOException {
+		CommandLine commandLine = parseCommandLine(args);
+		return countOrders(commandLine);
+	}
+
+	private CommandLine parseCommandLine(String[] args) {
 		if (args.length == 0) {
-			throw new RuntimeException("input the file name.");
+			throw new IllegalArgumentException("input the file name.");
 		}
 		CommandLine commandLine = new CommandLine();
 		commandLine.filename = args[args.length - 1];
 		commandLine.onlyCountReady = Arrays.asList(args).contains("-r");
-		return countOrders(commandLine);
+		return commandLine;
 	}
 
 	private long countOrders(CommandLine commandLine) throws IOException {
