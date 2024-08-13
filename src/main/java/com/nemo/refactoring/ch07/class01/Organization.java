@@ -5,20 +5,20 @@ import java.util.Map;
 
 public class Organization {
 
-	private static final Map<String, String> organization = new HashMap<>();
+	private Map<String, String> data;
+
+	public Organization(Map<String, String> data) {
+		this.data = data;
+	}
+
 
 
 	public static void main(String[] args) {
-		organization.put("name", "Acme Gooseberries");
-		organization.put("country", "US");
+		Organization organization = new Organization(Map.of("name", "Acme Gooseberries", "country", "US"));
 
-		System.out.println(getRawDataOfOrganization().get("name")); // read example
+		System.out.println(organization.data.get("name")); // read example
 		String newName = "Acme Gooseberries, Inc.";
-		getRawDataOfOrganization().put("name", newName); // write example
-		System.out.println(getRawDataOfOrganization());
-	}
-
-	public static Map<String, String> getRawDataOfOrganization() {
-		return organization;
+		organization.data.put("name", newName); // write example
+		System.out.println(organization.data);
 	}
 }
