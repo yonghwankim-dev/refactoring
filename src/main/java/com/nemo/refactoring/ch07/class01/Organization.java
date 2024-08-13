@@ -11,14 +11,16 @@ public class Organization {
 		this.data = data;
 	}
 
-
+	public void setName(String name){
+		data.put("name", name);
+	}
 
 	public static void main(String[] args) {
 		Organization organization = new Organization(Map.of("name", "Acme Gooseberries", "country", "US"));
 
 		System.out.println(organization.data.get("name")); // read example
 		String newName = "Acme Gooseberries, Inc.";
-		organization.data.put("name", newName); // write example
+		organization.setName(newName);
 		System.out.println(organization.data);
 	}
 }
