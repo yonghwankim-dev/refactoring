@@ -4,10 +4,12 @@ package com.nemo.refactoring.ch06.class11;
 public class PriceData {
 	private final int basePrice;
 	private final int quantity;
+	private final int discount;
 
-	public PriceData(int basePrice, int quantity) {
+	public PriceData(int basePrice, int quantity, int discount) {
 		this.basePrice = basePrice;
 		this.quantity = quantity;
+		this.discount = discount;
 	}
 
 	public int getBasePrice() {
@@ -16,5 +18,9 @@ public class PriceData {
 
 	public int getQuantity() {
 		return quantity;
+	}
+
+	public int getDiscount() {
+		return discount;
 	}
 }
