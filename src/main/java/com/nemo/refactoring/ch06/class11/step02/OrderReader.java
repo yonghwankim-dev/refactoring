@@ -27,6 +27,7 @@ public class OrderReader {
 		}
 		CommandLine commandLine = new CommandLine();
 		String fileName = args[args.length - 1];
+		commandLine.onlyCountReady = Arrays.asList(args).contains("-r");
 		return countOrders(commandLine, args, fileName);
 	}
 
@@ -34,13 +35,16 @@ public class OrderReader {
 		File input = new ClassPathResource(fileName).getFile();
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
-		boolean onlyCountReady = Arrays.asList(args).contains("-r");
-		if (onlyCountReady){
+		if (commandLine.onlyCountReady){
 			return Stream.of(orders)
 				.filter(o -> "ready".equals(o.getStatus()))
 				.count();
 		}else{
 			return orders.length;
 		}
+	}
+
+	static class CommandLine {
+		private boolean onlyCountReady;
 	}
 }
