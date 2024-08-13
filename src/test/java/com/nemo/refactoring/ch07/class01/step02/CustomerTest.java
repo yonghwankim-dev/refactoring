@@ -32,16 +32,21 @@ class CustomerTest {
 		martin.put("id", "1920");
 		martin.put("usages", martinUsages);
 		customerData.put("1920", martin);
-	    // when
+		Customer customer = new Customer(customerData);
+		// when
 		String customerId = "1920";
 		Map<String, Map<String, Integer>> usages = (Map<String, Map<String, Integer>>)customerData.get(customerId).get("usages");
-		int year = 2016;
-		int month = 1;
+		String year = "2016";
+		String month = "1";
 		int amount = 10;
-		usages.get(String.valueOf(year)).put(String.valueOf(month), amount);
-	    // then
-		Integer findAmount = usages.get(String.valueOf(year)).get(String.valueOf(month));
-		Assertions.assertThat(findAmount).isEqualTo(10);
-	}
+		usages.get(year).put(month, amount);
 
+		Map<String, Integer> result = customer.compareUsage(customerId, year, month, amount);
+	    // then
+		Integer findAmount = usages.get(year).get(month);
+		Assertions.assertThat(findAmount).isEqualTo(10);
+
+		Assertions.assertThat(result.get("laterAmount")).isEqualTo(55);
+		Assertions.assertThat(result.get("change")).isEqualTo(45);
+	}
 }
