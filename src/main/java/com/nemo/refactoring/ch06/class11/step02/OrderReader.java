@@ -22,8 +22,7 @@ public class OrderReader {
 	}
 
 	public long run(String[] args) throws IOException {
-		CommandLine commandLine = parseCommandLine(args);
-		return countOrders(commandLine);
+		return countOrders(parseCommandLine(args));
 	}
 
 	private CommandLine parseCommandLine(String[] args) {
