@@ -26,10 +26,10 @@ public class OrderReader {
 		}
 		CommandLine commandLine = new CommandLine();
 		String fileName = args[args.length - 1];
-		return countOrders(args, fileName);
+		return countOrders(commandLine, args, fileName);
 	}
 
-	private long countOrders(String[] args, String fileName) throws IOException {
+	private long countOrders(CommandLine commandLine, String[] args, String fileName) throws IOException {
 		File input = new ClassPathResource(fileName).getFile();
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
