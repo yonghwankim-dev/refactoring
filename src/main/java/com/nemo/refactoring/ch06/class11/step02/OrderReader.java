@@ -12,14 +12,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OrderReader {
 	public static void main(String[] args) {
 		try {
-			run(args);
+			System.out.println(run(args));
 		} catch (IOException e) {
 			System.err.println(e);
 			System.exit(1);
 		}
 	}
 
-	private static void run(String[] args) throws IOException {
+	private static long run(String[] args) throws IOException {
 		if (args.length == 0) {
 			throw new RuntimeException("input the file name.");
 		}
@@ -28,11 +28,11 @@ public class OrderReader {
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
 		if (Stream.of(args).anyMatch(arg-> "-r".equals(arg))){
-			System.out.println(Stream.of(orders)
+			return Stream.of(orders)
 				.filter(o->"ready".equals(o.getStatus()))
-				.count()); // 2
+				.count();
 		}else{
-			System.out.println(orders.length);
+			return orders.length;
 		}
 	}
 }
