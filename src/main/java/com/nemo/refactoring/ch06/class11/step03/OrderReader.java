@@ -32,13 +32,17 @@ public class OrderReader {
 		File input = new ClassPathResource(commandLine.filename(args)).getFile();
 		ObjectMapper mapper = new ObjectMapper();
 		Order[] orders = mapper.readValue(input, Order[].class);
-		if (Arrays.asList(args).contains("-r")){
+		if (onlyCountReady(args)){
 			return Stream.of(orders)
 				.filter(o -> "ready".equals(o.getStatus()))
 				.count();
 		}else{
 			return orders.length;
 		}
+	}
+
+	private boolean onlyCountReady(String[] args) {
+		return Arrays.asList(args).contains("-r");
 	}
 
 	static class CommandLine {
