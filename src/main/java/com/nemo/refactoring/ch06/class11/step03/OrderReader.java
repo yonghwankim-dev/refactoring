@@ -21,9 +21,6 @@ public class OrderReader {
 	}
 
 	public long run(String[] args) throws IOException {
-		if (args.length == 0) {
-			throw new IllegalArgumentException("input the file name.");
-		}
 		CommandLine commandLine = new CommandLine(args);
 		return countOrders(commandLine, args);
 	}
@@ -46,6 +43,9 @@ public class OrderReader {
 
 		public CommandLine(String[] args) {
 			this.args = args;
+			if (args.length == 0) {
+				throw new IllegalArgumentException("input the file name.");
+			}
 		}
 
 		private String filename(String[] args) {
