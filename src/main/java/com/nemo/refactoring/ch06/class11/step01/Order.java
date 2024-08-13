@@ -1,11 +1,15 @@
-package com.nemo.refactoring.ch06.class11;
+package com.nemo.refactoring.ch06.class11.step01;
 
 public class Order {
 	public int priceOrder(Product product, int quantity, ShippingMethod shippingMethod) {
+		PriceData priceData = calculatePricingData(product, quantity);
+		return applyShipping(priceData, shippingMethod);
+	}
+
+	private static PriceData calculatePricingData(Product product, int quantity) {
 		int basePrice = product.getBasePrice() * quantity;
 		int discount = (int)(Math.max(0, quantity - product.getDiscountThreshold()) * product.getBasePrice() * product.getDiscountRate());
-		PriceData priceData = new PriceData(basePrice, quantity, discount);
-		return applyShipping(priceData, shippingMethod);
+		return new PriceData(basePrice, quantity, discount);
 	}
 
 	private int applyShipping(PriceData priceData, ShippingMethod shippingMethod) {

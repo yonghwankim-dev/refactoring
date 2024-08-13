@@ -1,10 +1,12 @@
-package com.nemo.refactoring.ch06.class11;
-
-import static org.junit.jupiter.api.Assertions.*;
+package com.nemo.refactoring.ch06.class11.step01;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.nemo.refactoring.ch06.class11.step01.Order;
+import com.nemo.refactoring.ch06.class11.step01.Product;
+import com.nemo.refactoring.ch06.class11.step01.ShippingMethod;
 
 class OrderTest {
 

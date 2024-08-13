@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch06.class11;
+package com.nemo.refactoring.ch06.class11.step01;
 
 public class Product {
 	private final int basePrice; // 기본 가격
