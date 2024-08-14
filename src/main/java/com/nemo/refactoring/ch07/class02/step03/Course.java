@@ -3,7 +3,7 @@ package com.nemo.refactoring.ch07.class02.step03;
 import java.util.Objects;
 
 public class Course {
-	private final String name;
+	private String name;
 	private final boolean isAdvanced;
 
 	public Course(String name, boolean isAdvanced) {
@@ -17,6 +17,10 @@ public class Course {
 
 	public boolean isAdvanced() {
 		return isAdvanced;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

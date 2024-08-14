@@ -1,6 +1,7 @@
 package com.nemo.refactoring.ch07.class02.step03;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Person {
@@ -29,7 +30,7 @@ public class Person {
 	}
 
 	public List<Course> getCourses() {
-		return new ArrayList<>(courses);
+		return Collections.unmodifiableList(courses);
 	}
 }
 
