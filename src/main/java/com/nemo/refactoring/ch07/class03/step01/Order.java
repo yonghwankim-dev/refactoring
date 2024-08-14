@@ -1,19 +1,23 @@
 package com.nemo.refactoring.ch07.class03.step01;
 
 public class Order {
-	private final Long id;
-	private final String priority;
+	private Long id;
+	private Priority priority;
 
-	public Order(Long id, String priority) {
+	public Order(Long id, String priorityString) {
 		this.id = id;
-		this.priority = priority;
+		this.priority = new Priority(priorityString);
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getPriority() {
-		return priority;
+	public String getPriorityString() {
+		return priority.toString();
+	}
+
+	public void setPriority(String priorityString) {
+		this.priority = new Priority(priorityString);
 	}
 }

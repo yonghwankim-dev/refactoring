@@ -1,7 +1,5 @@
 package com.nemo.refactoring.ch07.class03.step01;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -17,7 +15,7 @@ class OrderTest {
 		List<Order> orders = List.of(new Order(1L, "high"), new Order(2L, "rush"), new Order(3L, "high"), new Order(4L, "low"));
 		// when
 		long highPriorityCount = orders.stream()
-			.filter(o -> o.getPriority().equals("high") || o.getPriority().equals("rush"))
+			.filter(o -> o.getPriorityString().equals("high") || o.getPriorityString().equals("rush"))
 			.count();
 		// then
 		Assertions.assertThat(highPriorityCount).isEqualTo(3L);
