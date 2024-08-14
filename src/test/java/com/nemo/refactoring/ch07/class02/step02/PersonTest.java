@@ -41,5 +41,4 @@ class PersonTest {
 	    // then
 		Assertions.assertThat(lee.numberOfCourses()).isEqualTo(2);
 	}
-
 }
