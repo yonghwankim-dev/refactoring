@@ -10,15 +10,14 @@ public class Order {
 	}
 
 	public int price(){
-		int basePrice = getBasePrice();
 		double discountFactor = 0.98;
-		if (basePrice > 1000){
+		if (basePrice() > 1000){
 			discountFactor -= 0.03;
 		}
-		return (int)(basePrice * discountFactor);
+		return (int)(basePrice() * discountFactor);
 	}
 
-	private int getBasePrice() {
+	private int basePrice() {
 		return this.quantity * this.item.getPrice();
 	}
 }
