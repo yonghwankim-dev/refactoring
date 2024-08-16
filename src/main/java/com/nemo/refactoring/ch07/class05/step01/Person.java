@@ -10,7 +10,7 @@ public class Person {
 		this.name = name;
 		this.officeAreaCode = officeAreaCode;
 		this.officeNumber = officeNumber;
-		this.telephoneNumber = new TelephoneNumber();
+		this.telephoneNumber = new TelephoneNumber(officeAreaCode, officeNumber);
 	}
 
 	public String getName() {
