@@ -16,9 +16,9 @@ public class Account {
 	private AccountType type;
 
 	public Account(int number, AccountType type, double interestRate) {
+		assert this.type.interestRate == interestRate;
 		this.number = number;
 		this.type = type;
-		assert interestRate == this.type.interestRate;
 	}
 
 	public double interestRate(){
