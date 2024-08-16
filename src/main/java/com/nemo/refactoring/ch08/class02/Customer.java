@@ -12,7 +12,7 @@ public class Customer {
 	public Customer(String name, double discountRate) {
 		this.name = name;
 		this.setDiscountRate(discountRate);
-		this.contract = new CustomerContract(dateToday());
+		this.contract = new CustomerContract(dateToday(), discountRate);
 	}
 
 	public void becomePreferred() {
