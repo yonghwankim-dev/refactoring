@@ -12,7 +12,7 @@ class ShipmentTest {
 	@Test
 	void trackingInfo(){
 	    // given
-		Shipment cj = new Shipment(new TrackingInformation("CJ 대한통운", "123456"));
+		Shipment cj = new Shipment("CJ 대한통운", "123456");
 		// when
 		String trackingInfo = cj.trackingInfo();
 		// then
@@ -23,7 +23,7 @@ class ShipmentTest {
 	@Test
 	void setShippingCompany(){
 	    // given
-		Shipment cj = new Shipment(new TrackingInformation("CJ 대한통운", "123456"));
+		Shipment cj = new Shipment("CJ 대한통운", "123456");
 	    // when
 	    cj.setShippingCompany("우체국");
 	    // then

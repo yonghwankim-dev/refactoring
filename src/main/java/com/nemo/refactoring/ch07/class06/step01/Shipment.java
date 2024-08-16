@@ -1,21 +1,23 @@
 package com.nemo.refactoring.ch07.class06.step01;
 
 public class Shipment {
-	private TrackingInformation trackingInformation;
+	private String shippingCompany;
+	private String trackingNumber;
 
-	public Shipment(TrackingInformation trackingInformation) {
-		this.trackingInformation = trackingInformation;
+	public Shipment(String shippingCompany, String trackingNumber) {
+		this.shippingCompany = shippingCompany;
+		this.trackingNumber = trackingNumber;
 	}
 
 	public String trackingInfo(){
-		return trackingInformation.display();
+		return shippingCompany + ": " + trackingNumber;
 	}
 
 	public void setShippingCompany(String shippingCompany) {
-		trackingInformation.setShippingCompany(shippingCompany);
+		this.shippingCompany = shippingCompany;
 	}
 
 	public String getShippingCompany() {
-		return trackingInformation.getShippingCompany();
+		return this.shippingCompany;
 	}
 }
