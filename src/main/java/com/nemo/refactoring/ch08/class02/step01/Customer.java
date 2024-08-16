@@ -1,7 +1,5 @@
-package com.nemo.refactoring.ch08.class02;
+package com.nemo.refactoring.ch08.class02.step01;
 
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 public class Customer {

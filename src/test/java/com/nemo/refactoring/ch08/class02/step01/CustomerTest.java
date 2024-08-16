@@ -1,12 +1,10 @@
-package com.nemo.refactoring.ch08.class02;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.math.BigInteger;
+package com.nemo.refactoring.ch08.class02.step01;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.nemo.refactoring.ch08.class02.step01.Customer;
 
 class CustomerTest {
 

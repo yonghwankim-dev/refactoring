@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch08.class02;
+package com.nemo.refactoring.ch08.class02.step01;
 
 import java.time.LocalDate;
 
