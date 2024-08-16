@@ -4,11 +4,13 @@ public class Person {
 	private String name;
 	private String officeAreaCode;
 	private String officeNumber;
+	private TelephoneNumber telephoneNumber;
 
 	public Person(String name, String officeAreaCode, String officeNumber) {
 		this.name = name;
 		this.officeAreaCode = officeAreaCode;
 		this.officeNumber = officeNumber;
+		this.telephoneNumber = new TelephoneNumber();
 	}
 
 	public String getName() {
@@ -33,5 +35,9 @@ public class Person {
 
 	public void setOfficeNumber(String officeNumber) {
 		this.officeNumber = officeNumber;
+	}
+
+	public String telephoneNumber() {
+		return ("(" + officeAreaCode + ") " + officeNumber);
 	}
 }
