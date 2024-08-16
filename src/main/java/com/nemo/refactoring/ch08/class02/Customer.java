@@ -6,22 +6,20 @@ import java.time.LocalDate;
 
 public class Customer {
 	private String name;
-	private double discountRate;
 	private CustomerContract contract;
 
 	public Customer(String name, double discountRate) {
 		this.name = name;
-		this.setDiscountRate(discountRate);
 		this.contract = new CustomerContract(dateToday(), discountRate);
 	}
 
 	public void becomePreferred() {
-		this.setDiscountRate(discountRate + 0.03);
+		this.setDiscountRate(contract.getDiscountRate() + 0.03);
 		// other anything
 	}
 
 	public int applyDiscount(int amount) {
-		return amount - (int)(amount * this.discountRate);
+		return amount - (int)(amount * this.contract.getDiscountRate());
 	}
 
 	private LocalDate dateToday() {
@@ -29,6 +27,6 @@ public class Customer {
 	}
 
 	private void setDiscountRate(double discountRate) {
-		this.discountRate = discountRate;
+		this.contract.setDiscountRate(discountRate);
 	}
 }
