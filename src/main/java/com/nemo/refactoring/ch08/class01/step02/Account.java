@@ -34,13 +34,8 @@ public class Account {
 	public double bankCharge() {
 		double result = 4.5;
 		if (daysOverdrawn > 0) {
-			result += overdraftCharge();
+			result += this.type.overdraftCharge(this.daysOverdrawn);
 		}
 		return result;
-	}
-
-	// 초과 인출 이자 계산
-	private double overdraftCharge() {
-		return this.type.overdraftCharge(this.daysOverdrawn);
 	}
 }
