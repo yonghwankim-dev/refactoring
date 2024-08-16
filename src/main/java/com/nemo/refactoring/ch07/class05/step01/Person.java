@@ -1,8 +1,8 @@
 package com.nemo.refactoring.ch07.class05.step01;
 
 public class Person {
-	private final String name;
-	private final TelephoneNumber telephoneNumber;
+	private String name;
+	private TelephoneNumber telephoneNumber;
 
 	public Person(String name, String officeAreaCode, String officeNumber) {
 		this.name = name;
@@ -34,6 +34,6 @@ public class Person {
 	}
 
 	public String telephoneNumber() {
-		return telephoneNumber.telephoneNumber();
+		return telephoneNumber.toString();
 	}
 }

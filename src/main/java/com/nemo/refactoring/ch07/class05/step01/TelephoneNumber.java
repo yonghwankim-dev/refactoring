@@ -9,10 +9,6 @@ public class TelephoneNumber {
 		this.number = number;
 	}
 
-	public String telephoneNumber() {
-		return ("(" + areaCode + ") " + number);
-	}
-
 	public String getAreaCode() {
 		return areaCode;
 	}
@@ -27,5 +23,10 @@ public class TelephoneNumber {
 
 	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	@Override
+	public String toString() {
+		return ("(" + areaCode + ") " + number);
 	}
 }
