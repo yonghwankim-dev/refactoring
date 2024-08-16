@@ -1,27 +1,31 @@
 package com.nemo.refactoring.ch07.class05.step01;
 
 public class TelephoneNumber {
-	private String officeAreaCode;
-	private String officeNumber;
+	private String areaCode;
+	private String number;
 
-	public TelephoneNumber(String officeAreaCode, String officeNumber) {
-		this.officeAreaCode = officeAreaCode;
-		this.officeNumber = officeNumber;
+	public TelephoneNumber(String areaCode, String number) {
+		this.areaCode = areaCode;
+		this.number = number;
 	}
 
-	public String getOfficeAreaCode() {
-		return officeAreaCode;
+	public String telephoneNumber() {
+		return ("(" + areaCode + ") " + number);
 	}
 
-	public void setOfficeAreaCode(String officeAreaCode) {
-		this.officeAreaCode = officeAreaCode;
+	public String getAreaCode() {
+		return areaCode;
 	}
 
-	public String getOfficeNumber() {
-		return officeNumber;
+	public void setAreaCode(String areaCode) {
+		this.areaCode = areaCode;
 	}
 
-	public void setOfficeNumber(String officeNumber) {
-		this.officeNumber = officeNumber;
+	public String getNumber() {
+		return number;
+	}
+
+	public void setNumber(String number) {
+		this.number = number;
 	}
 }

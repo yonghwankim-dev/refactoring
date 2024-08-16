@@ -1,15 +1,11 @@
 package com.nemo.refactoring.ch07.class05.step01;
 
 public class Person {
-	private String name;
-	private String officeAreaCode;
-	private String officeNumber;
-	private TelephoneNumber telephoneNumber;
+	private final String name;
+	private final TelephoneNumber telephoneNumber;
 
 	public Person(String name, String officeAreaCode, String officeNumber) {
 		this.name = name;
-		this.officeAreaCode = officeAreaCode;
-		this.officeNumber = officeNumber;
 		this.telephoneNumber = new TelephoneNumber(officeAreaCode, officeNumber);
 	}
 
@@ -22,22 +18,22 @@ public class Person {
 	}
 
 	public String getOfficeAreaCode() {
-		return officeAreaCode;
+		return this.telephoneNumber.getAreaCode();
 	}
 
 	public void setOfficeAreaCode(String officeAreaCode) {
-		this.officeAreaCode = officeAreaCode;
+		this.telephoneNumber.setAreaCode(officeAreaCode);
 	}
 
 	public String getOfficeNumber() {
-		return officeNumber;
+		return this.telephoneNumber.getNumber();
 	}
 
 	public void setOfficeNumber(String officeNumber) {
-		this.officeNumber = officeNumber;
+		this.telephoneNumber.setNumber(officeNumber);
 	}
 
 	public String telephoneNumber() {
-		return ("(" + officeAreaCode + ") " + officeNumber);
+		return telephoneNumber.telephoneNumber();
 	}
 }
