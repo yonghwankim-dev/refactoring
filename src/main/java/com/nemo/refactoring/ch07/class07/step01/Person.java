@@ -13,7 +13,11 @@ public class Person {
 		return name;
 	}
 
-	public Department getDepartment() {
-		return department;
+	// public Department getDepartment() {
+	// 	return department;
+	// }
+
+	public String manager() {
+		return department.getManager();
 	}
 }
