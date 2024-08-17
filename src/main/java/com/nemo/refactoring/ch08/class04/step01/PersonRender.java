@@ -32,12 +32,6 @@ public class PersonRender {
 		return LocalDate.now().minusDays(7);
 	}
 
-	private String emitPhotoData(Photo photo) {
-		StringBuilder result = new StringBuilder();
-		result.append(zzTmp(photo));
-		return result.toString();
-	}
-
 	private String zzTmp(Photo photo) {
 		StringBuilder result = new StringBuilder();
 		result.append("<p>제목: ").append(photo.getTitle()).append("</p>").append("\n");
