@@ -1,7 +1,6 @@
 package com.nemo.refactoring.ch08.class04.step01;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.List;
 
 public class PersonRender {
@@ -9,7 +8,7 @@ public class PersonRender {
 		StringBuilder result = new StringBuilder();
 		result.append("<p>Person: " + person.getName() + "</p>").append("\n");
 		result.append(renderPhoto(person.getPhoto())).append("\n");
-		result.append(zzTmp(person.getPhoto()));
+		result.append(emitPhotoData(person.getPhoto()));
 		result.append("<p>위치: " + person.getPhoto().getLocation() + "</p>").append("\n");
 		return result.toString();
 	}
@@ -20,7 +19,7 @@ public class PersonRender {
 			.filter(p-> p.getData().isAfter(recentDateCutoff()))
 			.forEach(p->{
 				result.append("<div>").append("\n");
-				result.append(zzTmp(p));
+				result.append(emitPhotoData(p));
 				result.append("<p>위치: " + p.getLocation() + "</p>").append("\n");
 				result.append("</div>");
 			});
@@ -32,7 +31,7 @@ public class PersonRender {
 		return LocalDate.now().minusDays(7);
 	}
 
-	private String zzTmp(Photo photo) {
+	private String emitPhotoData(Photo photo) {
 		StringBuilder result = new StringBuilder();
 		result.append("<p>제목: ").append(photo.getTitle()).append("</p>").append("\n");
 		result.append("<p>날짜: " + photo.getData().toString() + "</p>").append("\n");
