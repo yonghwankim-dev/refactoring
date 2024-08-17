@@ -9,7 +9,7 @@ public class PersonRender {
 		StringBuilder result = new StringBuilder();
 		result.append("<p>Person: " + person.getName() + "</p>").append("\n");
 		result.append(renderPhoto(person.getPhoto())).append("\n");
-		result.append(emitPhotoData(person.getPhoto()));
+		result.append(zzTmp(person.getPhoto()));
 		result.append("<p>위치: " + person.getPhoto().getLocation() + "</p>").append("\n");
 		return result.toString();
 	}
@@ -20,7 +20,7 @@ public class PersonRender {
 			.filter(p-> p.getData().isAfter(recentDateCutoff()))
 			.forEach(p->{
 				result.append("<div>").append("\n");
-				result.append(emitPhotoData(p));
+				result.append(zzTmp(p));
 				result.append("<p>위치: " + p.getLocation() + "</p>").append("\n");
 				result.append("</div>");
 			});
