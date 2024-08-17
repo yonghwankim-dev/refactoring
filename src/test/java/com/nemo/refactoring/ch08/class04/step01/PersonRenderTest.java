@@ -1,6 +1,5 @@
 package com.nemo.refactoring.ch08.class04.step01;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,7 +23,23 @@ class PersonRenderTest {
 			+ "<p>날짜: 2024-08-17</p>\n"
 			+ "<p>위치: seoul</p>\n"
 			+ "</div>");
+	}
 
+	@DisplayName("사용자가 가지고 있는 포토를 출력한다")
+	@Test
+	void renderPerson(){
+		// given
+		PersonRender personRender = new PersonRender();
+		// when
+		String result = personRender.renderPerson(new Person("kim", new Photo("title1", "location", "url", LocalDate.of(2024, 8, 16))));
+		// then
+		Assertions.assertThat(result).isEqualTo("<p>Person: kim</p>\n"
+			+ "<div>\n"
+			+ "  <img src=\"url\"/>\n"
+			+ "</div>\n"
+			+ "<p>제목: title1</p>\n"
+			+ "<p>날짜: 2024-08-16</p>\n"
+			+ "<p>위치: location</p>\n");
 	}
 
 }
