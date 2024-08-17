@@ -32,8 +32,14 @@ public class PersonRender {
 
 	private String emitPhotoData(Photo photo) {
 		StringBuilder result = new StringBuilder();
-		result.append("<p>제목: ").append(photo.getTitle()).append("</p>").append("\n");
+		result.append(zzTmp(photo));
 		result.append("<p>위치: " + photo.getLocation() + "</p>").append("\n");
+		return result.toString();
+	}
+
+	private String zzTmp(Photo photo) {
+		StringBuilder result = new StringBuilder();
+		result.append("<p>제목: ").append(photo.getTitle()).append("</p>").append("\n");
 		result.append("<p>날짜: " + photo.getData().toString() + "</p>").append("\n");
 		return result.toString();
 	}

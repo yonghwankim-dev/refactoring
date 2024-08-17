@@ -21,8 +21,8 @@ class PersonRenderTest {
 		// then
 		Assertions.assertThat(result).isEqualTo("<div>\n"
 			+ "<p>제목: title1</p>\n"
-			+ "<p>위치: seoul</p>\n"
 			+ "<p>날짜: 2024-08-17</p>\n"
+			+ "<p>위치: seoul</p>\n"
 			+ "</div>");
 
 	}
