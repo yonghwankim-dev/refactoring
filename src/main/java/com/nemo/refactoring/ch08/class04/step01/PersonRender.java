@@ -10,6 +10,7 @@ public class PersonRender {
 		result.append("<p>Person: " + person.getName() + "</p>").append("\n");
 		result.append(renderPhoto(person.getPhoto())).append("\n");
 		result.append(emitPhotoData(person.getPhoto()));
+		result.append("<p>위치: " + person.getPhoto().getLocation() + "</p>").append("\n");
 		return result.toString();
 	}
 
@@ -20,6 +21,7 @@ public class PersonRender {
 			.forEach(p->{
 				result.append("<div>").append("\n");
 				result.append(emitPhotoData(p));
+				result.append("<p>위치: " + p.getLocation() + "</p>").append("\n");
 				result.append("</div>");
 			});
 		return result.toString();
@@ -33,7 +35,6 @@ public class PersonRender {
 	private String emitPhotoData(Photo photo) {
 		StringBuilder result = new StringBuilder();
 		result.append(zzTmp(photo));
-		result.append("<p>위치: " + photo.getLocation() + "</p>").append("\n");
 		return result.toString();
 	}
 
