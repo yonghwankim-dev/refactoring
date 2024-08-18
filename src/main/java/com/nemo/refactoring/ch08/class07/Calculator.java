@@ -19,10 +19,8 @@ public class Calculator {
 	}
 
 	private int totalSalary(List<Person> people) {
-		int totalSalary = 0;
-		for (Person person : people) {
-			totalSalary += person.getSalary();
-		}
-		return totalSalary;
+		return people.stream()
+			.mapToInt(Person::getSalary)
+			.sum();
 	}
 }
