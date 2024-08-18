@@ -11,6 +11,8 @@ public class Calculator {
 			if (person.getAge() < youngest) {
 				youngest = person.getAge();
 			}
+		}
+		for (Person person : people) {
 			totalSalary += person.getSalary();
 		}
 		return String.format("youngest: %d, totalSalary: %d", youngest, totalSalary);
