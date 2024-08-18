@@ -19,7 +19,7 @@ class BirdAnalyzerTest {
 		// when
 		Map<String, String> result = new BirdAnalyzer().plumages(birds);
 		// then
-		Assertions.assertThat(result.get("빨간 유럽 제비")).isEqualTo("보통이다");
+		Assertions.assertThat(result.getOrDefault("빨간 유럽 제비", null)).isEqualTo("보통이다");
 	}
 
 
@@ -31,6 +31,6 @@ class BirdAnalyzerTest {
 		// when
 		Map<String, Integer> result = new BirdAnalyzer().speeds(birds);
 		// then
-	    Assertions.assertThat(result.get("빨간 유럽 제비")).isEqualTo(35);
+	    Assertions.assertThat(result.getOrDefault("빨간 유럽 제비", 0)).isEqualTo(35);
 	}
 }

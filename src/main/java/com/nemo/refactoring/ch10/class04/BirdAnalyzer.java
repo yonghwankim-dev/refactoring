@@ -12,12 +12,7 @@ public class BirdAnalyzer {
 	}
 
 	private String plumage(Bird bird) {
-		return switch (bird.getType()) {
-			case "유럽 제비" -> "보통이다";
-			case "아프리카 제비" -> bird.getNumberOfCoconuts() > 2 ? "지쳤다" : "보통이다";
-			case "노르웨이 파란 앵무" -> bird.getVoltage() > 100 ? "그을렸다" : "예쁘다";
-			default -> "unknown";
-		};
+		return bird.plumage();
 	}
 
 	public Map<String, Integer> speeds(List<Bird> birds){
@@ -26,19 +21,6 @@ public class BirdAnalyzer {
 	}
 
 	private Integer airSpeedVelocity(Bird bird) {
-		switch (bird.getType()){
-			case "유럽 제비" -> {
-				return 35;
-			}
-			case "아프리카 제비" -> {
-				return 40 - 2 * bird.getNumberOfCoconuts();
-			}
-			case "노르웨이 파란 앵무" -> {
-				return bird.isNailed() ? 0 : 10 + bird.getVoltage() / 10;
-			}
-			default -> {
-				return null;
-			}
-		}
+		return bird.airSpeedVelocity();
 	}
 }
