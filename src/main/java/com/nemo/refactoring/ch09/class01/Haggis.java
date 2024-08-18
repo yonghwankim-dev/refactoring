@@ -8,8 +8,11 @@ public class Haggis {
 	}
 
 	private double getPrimary(Scenario scenario, int time) {
-		double primaryTime = Math.min(time, scenario.getDelay());
-		return 0.5 * scenario.primaryAcceleration() * primaryTime * primaryTime;
+		return 0.5 * scenario.primaryAcceleration() * minDelay(scenario.getDelay(), time) * minDelay(scenario.getDelay(), time);
+	}
+
+	private double minDelay(double delay, int time) {
+		return Math.min(time, delay);
 	}
 
 	private double getSecondary(Scenario scenario, double secondaryTime) {
