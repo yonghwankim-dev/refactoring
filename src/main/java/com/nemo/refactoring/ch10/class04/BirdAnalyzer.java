@@ -8,19 +8,22 @@ public class BirdAnalyzer {
 
 	public Map<String, String> plumages(List<Bird> birds){
 		return birds.stream()
-			.collect(Collectors.toMap(Bird::getName, this::plumage));
+			.map(this::createBird)
+			.collect(Collectors.toMap(Bird::getName, Bird::plumage));
 	}
 
-	private String plumage(Bird bird) {
-		return bird.plumage();
+	private Bird createBird(Bird bird) {
+		return switch (bird.getType()){
+			case "유럽 제비" -> new EuropeanSwallow(bird);
+			case "아프리카 제비" -> new AfricanSwallow(bird);
+			case "노르웨이 파란 앵무" -> new NorwegianBlueParrot(bird);
+			default -> new Bird(bird);
+		};
 	}
 
 	public Map<String, Integer> speeds(List<Bird> birds){
 		return birds.stream()
-			.collect(Collectors.toMap(Bird::getName, this::airSpeedVelocity));
-	}
-
-	private Integer airSpeedVelocity(Bird bird) {
-		return bird.airSpeedVelocity();
+			.map(this::createBird)
+			.collect(Collectors.toMap(Bird::getName, Bird::airSpeedVelocity));
 	}
 }
