@@ -7,11 +7,19 @@ public class Person {
 		this.teleponeNumber = new TeleponeNumber(areaCode, number);
 	}
 
-	public TeleponeNumber getTeleponeNumber() {
-		return teleponeNumber;
+	public String getOfficeAreaCode() {
+		return teleponeNumber.getAreaCode();
 	}
 
-	public void setTeleponeNumber(TeleponeNumber teleponeNumber) {
-		this.teleponeNumber = teleponeNumber;
+	public void setOfficeAreaCode(String areaCode) {
+		this.teleponeNumber = new TeleponeNumber(areaCode, this.teleponeNumber.getNumber());
+	}
+
+	public String getOfficeNumber() {
+		return teleponeNumber.getNumber();
+	}
+
+	public void setOfficeNumber(String number) {
+		this.teleponeNumber = new TeleponeNumber(this.teleponeNumber.getAreaCode(), number);
 	}
 }
