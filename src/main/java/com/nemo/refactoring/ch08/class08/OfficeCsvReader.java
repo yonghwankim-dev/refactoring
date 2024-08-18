@@ -10,12 +10,13 @@ public class OfficeCsvReader {
 	public List<Office> readOffices(String input) {
 		String[] lines = input.split("\n");
 		List<Office> result = new ArrayList<>();
-		String[] loopItems = Arrays.stream(lines)
+		String[][] loopItems = Arrays.stream(lines)
 			.skip(1)
-			.filter(line->!line.trim().equals(Strings.EMPTY))
-			.toArray(String[]::new);
-		for (String line : loopItems) {
-			String[] record = line.split(",");
+			.filter(line -> !line.trim().equals(Strings.EMPTY))
+			.map(line -> line.split(","))
+			.toArray(String[][]::new);
+		for (String[] line : loopItems) {
+			String[] record = line;
 			if (record[1].trim().equals("India")){
 				result.add(new Office(record[0].trim(), record[1].trim(), record[2].trim()));
 			}
