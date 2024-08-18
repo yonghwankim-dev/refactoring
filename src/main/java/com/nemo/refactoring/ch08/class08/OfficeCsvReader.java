@@ -14,12 +14,11 @@ public class OfficeCsvReader {
 			.skip(1)
 			.filter(line -> !line.trim().equals(Strings.EMPTY))
 			.map(line -> line.split(","))
+			.filter(record->record[1].trim().equals("India"))
 			.toArray(String[][]::new);
 		for (String[] line : loopItems) {
 			String[] record = line;
-			if (record[1].trim().equals("India")){
-				result.add(new Office(record[0].trim(), record[1].trim(), record[2].trim()));
-			}
+			result.add(new Office(record[0].trim(), record[1].trim(), record[2].trim()));
 		}
 		return result;
 	}
