@@ -1,6 +1,7 @@
 package com.nemo.refactoring.ch08.class08;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.logging.log4j.util.Strings;
@@ -10,11 +11,10 @@ public class OfficeCsvReader {
 		String[] lines = input.split("\n");
 		boolean firstLine = true;
 		List<Office> result = new ArrayList<>();
-		for (String line : lines) {
-			if (firstLine) {
-				firstLine = false;
-				continue;
-			}
+		String[] loopItems = Arrays.stream(lines)
+			.skip(1)
+			.toArray(String[]::new);
+		for (String line : loopItems) {
 			if (line.trim().equals(Strings.EMPTY)){
 				continue;
 			}
