@@ -1,6 +1,5 @@
 package com.nemo.refactoring.ch08.class08;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
