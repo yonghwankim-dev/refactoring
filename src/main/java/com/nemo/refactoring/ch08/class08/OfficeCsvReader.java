@@ -9,17 +9,12 @@ import org.apache.logging.log4j.util.Strings;
 public class OfficeCsvReader {
 	public List<Office> readOffices(String input) {
 		String[] lines = input.split("\n");
-		List<Office> result = new ArrayList<>();
-		String[][] loopItems = Arrays.stream(lines)
+		return Arrays.stream(lines)
 			.skip(1)
 			.filter(line -> !line.trim().equals(Strings.EMPTY))
 			.map(line -> line.split(","))
-			.filter(record->record[1].trim().equals("India"))
-			.toArray(String[][]::new);
-		for (String[] line : loopItems) {
-			String[] record = line;
-			result.add(new Office(record[0].trim(), record[1].trim(), record[2].trim()));
-		}
-		return result;
+			.filter(record -> record[1].trim().equals("India"))
+			.map(record -> new Office(record[0].trim(), record[1].trim(), record[2].trim()))
+			.toList();
 	}
 }
