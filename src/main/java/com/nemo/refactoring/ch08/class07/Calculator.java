@@ -9,13 +9,10 @@ public class Calculator {
 	}
 
 	private int youngestAge(List<Person> people) {
-		int youngest = people.get(0) != null ? people.get(0).getAge() : Integer.MAX_VALUE;
-		for (Person person : people) {
-			if (person.getAge() < youngest) {
-				youngest = person.getAge();
-			}
-		}
-		return youngest;
+		return people.stream()
+			.mapToInt(Person::getAge)
+			.min()
+			.orElse(Integer.MAX_VALUE);
 	}
 
 	private int totalSalary(List<Person> people) {
