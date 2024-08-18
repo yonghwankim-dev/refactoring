@@ -3,8 +3,12 @@ package com.nemo.refactoring.ch09.class01;
 public class Haggis {
 
 	public double distanceTravelled(Scenario scenario, int time){
-		double secondaryTime = time - scenario.getDelay();
-		return getPrimary(scenario, minDelay(scenario.getDelay(), time)) + getSecondary(scenario, secondaryTime);
+		return getPrimary(scenario, minDelay(scenario.getDelay(), time)) +
+			getSecondary(scenario, getSecondaryTime(time, scenario.getDelay()));
+	}
+
+	private double getSecondaryTime(double time, double delay) {
+		return time - delay;
 	}
 
 	private double getPrimary(Scenario scenario, double primaryTime) {
@@ -16,10 +20,6 @@ public class Haggis {
 	}
 
 	private double getSecondary(Scenario scenario, double secondaryTime) {
-		if(secondaryTime > 0) {
-			return scenario.primaryVelocity() * secondaryTime
-				+ 0.5 * scenario.secondaryAcceleration() * secondaryTime * secondaryTime;
-		}
-		return 0;
+		return secondaryTime > 0 ? scenario.primaryVelocity() * secondaryTime + 0.5 * scenario.secondaryAcceleration() * secondaryTime * secondaryTime : 0;
 	}
 }
