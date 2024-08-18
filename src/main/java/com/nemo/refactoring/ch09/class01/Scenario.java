@@ -13,6 +13,18 @@ public class Scenario {
 		this.secondaryForce = secondaryForce;
 	}
 
+	public double primaryAcceleration(){
+		return primaryForce / mass;
+	}
+
+	public double primaryVelocity(){
+		return primaryAcceleration() * delay;
+	}
+
+	public double secondaryAcceleration(){
+		return (primaryForce + secondaryForce) / mass;
+	}
+
 	public double getPrimaryForce() {
 		return primaryForce;
 	}

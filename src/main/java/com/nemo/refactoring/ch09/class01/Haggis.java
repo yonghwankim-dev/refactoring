@@ -4,15 +4,18 @@ public class Haggis {
 
 	public double distanceTravelled(Scenario scenario, int time){
 		double result = 0;
-		final double primaryAcceleration = scenario.getPrimaryForce() / scenario.getMass(); // 가속도 = 힘 / 질량
 		double primaryTime = Math.min(time, scenario.getDelay());
-		result = 0.5 * primaryAcceleration * primaryTime * primaryTime; // 전파된 거리
+		result = 0.5 * scenario.primaryAcceleration() * primaryTime * primaryTime; // 전파된 거리
 		double secondaryTime = time - scenario.getDelay();
-		if(secondaryTime > 0) {
-			double primaryVelocity = primaryAcceleration * scenario.getDelay();
-			double acc = (scenario.getPrimaryForce() + scenario.getSecondaryForce()) / scenario.getMass();
-			result += primaryVelocity * secondaryTime + 0.5 * acc * secondaryTime * secondaryTime;
-		}
+		result += getSecondary(scenario, secondaryTime);
 		return result;
+	}
+
+	private double getSecondary(Scenario scenario, double secondaryTime) {
+		if(secondaryTime > 0) {
+			return scenario.primaryVelocity() * secondaryTime
+				+ 0.5 * scenario.secondaryAcceleration() * secondaryTime * secondaryTime;
+		}
+		return 0;
 	}
 }
