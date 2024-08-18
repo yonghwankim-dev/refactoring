@@ -13,11 +13,12 @@ public class ProductionPlan {
 
 	public void applyAdjustment(Adjustment adjustment) {
 		this.adjustments.add(adjustment);
-		this.production += adjustment.getAmount();
 	}
 
 	public int getProduction() {
-		return production;
+		return this.adjustments.stream()
+			.mapToInt(Adjustment::getAmount)
+			.sum();
 	}
 
 	public List<Adjustment> getAdjustments() {
