@@ -30,17 +30,13 @@ public class Rating {
 		if (voyage.getZone().equals("동인도")){
 			result += 1;
 		}
-		result += voyageAndHistoryLengthFactor();
+		result += historyLengthFactor();
+		result += voyageLengthFactor();
 		return result;
 	}
 
-	int voyageAndHistoryLengthFactor() {
-		int result = 0;
-		result += historyLengthFactor();
-		if (voyage.getLength() > 14){
-			result -= 1;
-		}
-		return result;
+	int voyageLengthFactor() {
+		return voyage.getLength() > 14 ? -1 : 0;
 	}
 
 	private int historyLengthFactor() {
