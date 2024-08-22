@@ -16,12 +16,12 @@ class VoyageRatingCalculatorTest {
 	void rating(){
 	    // given
 		VoyageRatingCalculator calculator = new VoyageRatingCalculator();
-		Voyage voyage = new Voyage("중국", 10);
+		Voyage voyage = new Voyage("중국", 10, 10);
 		List<Voyage> history = Collections.emptyList();
 		// when
 		String rating = calculator.rating(voyage, history);
 		// then
-		String expected = "A";
+		String expected = "B";
 		Assertions.assertThat(rating).isEqualTo(expected);
 	}
 

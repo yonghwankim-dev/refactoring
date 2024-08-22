@@ -49,11 +49,32 @@ public class VoyageRatingCalculator {
 				.anyMatch(v -> v.getZone().equals("중국"));
 	}
 
+	// 항해 경로 위험요소
 	private int voyageRisk(Voyage voyage) {
-		return 1;
+		int result = 1;
+		if(voyage.getLength() > 4){
+			result += 2;
+		}
+		if (voyage.getLength() > 8){
+			result += voyage.getLength() - 8;
+		}
+		List<String> zones = List.of("중국", "동인도");
+		if (zones.contains(voyage.getZone())){
+			result += 4;
+		}
+		return Math.max(result, 0);
 	}
 
+	// 선장의 항해 이력 위험요소
 	private int captainHistoryRisk(Voyage voyage, List<Voyage> history) {
-		return 1;
+		int result = 1;
+		if (history.size() < 5){
+			result += 4;
+		}
+		result += (int)history.stream().filter(v->v.getProfit() < 0).count();
+		if (voyage.getZone().equals("중국") && hasChina(history)){
+			result -= 2;
+		}
+		return Math.max(result, 0);
 	}
 }
