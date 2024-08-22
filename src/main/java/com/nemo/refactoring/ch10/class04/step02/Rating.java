@@ -2,11 +2,19 @@ package com.nemo.refactoring.ch10.class04.step02;
 
 import java.util.List;
 
-public class VoyageRatingCalculator {
-	public String rating(Voyage voyage, List<VoyageHistory> history) {
-		int vpf = voyageProfitFactor(voyage, history);
-		int vr = voyageRisk(voyage);
-		int chr = captainHistoryRisk(voyage, history);
+public class Rating {
+	private final Voyage voyage;
+	private final List<VoyageHistory> history;
+
+	public Rating(Voyage voyage, List<VoyageHistory> history) {
+		this.voyage = voyage;
+		this.history = history;
+	}
+
+	public String value() {
+		int vpf = voyageProfitFactor();
+		int vr = voyageRisk();
+		int chr = captainHistoryRisk();
 		if (vpf * 3 > (vr + chr * 2)){
 			return "A";
 		}
@@ -14,7 +22,7 @@ public class VoyageRatingCalculator {
 	}
 
 	// 수익 요인
-	private int voyageProfitFactor(Voyage voyage, List<VoyageHistory> history) {
+	private int voyageProfitFactor() {
 		int result = 2;
 		if (voyage.getZone().equals("중국")){
 			result += 1;
@@ -22,7 +30,7 @@ public class VoyageRatingCalculator {
 		if (voyage.getZone().equals("동인도")){
 			result += 1;
 		}
-		if (voyage.getZone().equals("중국") && hasChina(history)){
+		if (voyage.getZone().equals("중국") && hasChina()){
 			result += 3;
 			if (history.size() > 10){
 				result += 1;
@@ -44,13 +52,13 @@ public class VoyageRatingCalculator {
 		return result;
 	}
 
-	private boolean hasChina(List<VoyageHistory> history) {
+	private boolean hasChina() {
 		return history.stream()
 				.anyMatch(v -> v.getZone().equals("중국"));
 	}
 
 	// 항해 경로 위험요소
-	private int voyageRisk(Voyage voyage) {
+	private int voyageRisk() {
 		int result = 1;
 		if(voyage.getLength() > 4){
 			result += 2;
@@ -66,13 +74,13 @@ public class VoyageRatingCalculator {
 	}
 
 	// 선장의 항해 이력 위험요소
-	private int captainHistoryRisk(Voyage voyage, List<VoyageHistory> history) {
+	private int captainHistoryRisk() {
 		int result = 1;
 		if (history.size() < 5){
 			result += 4;
 		}
 		result += (int)history.stream().filter(v->v.getProfit() < 0).count();
-		if (voyage.getZone().equals("중국") && hasChina(history)){
+		if (voyage.getZone().equals("중국") && hasChina()){
 			result -= 2;
 		}
 		return Math.max(result, 0);

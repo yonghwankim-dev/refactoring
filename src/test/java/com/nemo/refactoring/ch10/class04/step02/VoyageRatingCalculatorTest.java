@@ -1,8 +1,5 @@
 package com.nemo.refactoring.ch10.class04.step02;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Collections;
 import java.util.List;
 
 import org.assertj.core.api.Assertions;
@@ -15,7 +12,6 @@ class VoyageRatingCalculatorTest {
 	@Test
 	void rating(){
 	    // given
-		VoyageRatingCalculator calculator = new VoyageRatingCalculator();
 		Voyage voyage = new Voyage("서인도", 10);
 		List<VoyageHistory> history = List.of(
 			new VoyageHistory("동인도", 5),
@@ -24,7 +20,7 @@ class VoyageRatingCalculatorTest {
 			new VoyageHistory("서아프리카", 7)
 		);
 		// when
-		String rating = calculator.rating(voyage, history);
+		String rating = new RatingCalculator().rating(voyage, history);
 		// then
 		String expected = "B";
 		Assertions.assertThat(rating).isEqualTo(expected);
