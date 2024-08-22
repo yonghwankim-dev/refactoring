@@ -16,7 +16,7 @@ class VoyageRatingCalculatorTest {
 	void rating(){
 	    // given
 		VoyageRatingCalculator calculator = new VoyageRatingCalculator();
-		Voyage voyage = new Voyage();
+		Voyage voyage = new Voyage("중국", 10);
 		List<Voyage> history = Collections.emptyList();
 		// when
 		String rating = calculator.rating(voyage, history);
