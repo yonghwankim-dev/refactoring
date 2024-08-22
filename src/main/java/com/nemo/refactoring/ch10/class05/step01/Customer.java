@@ -29,6 +29,10 @@ public class Customer {
 		return paymentHistory;
 	}
 
+	public boolean isUnknown() {
+		return "미확인 고객".equals(name);
+	}
+
 	public String getName() {
 		return name;
 	}

@@ -9,13 +9,13 @@ class SiteTest {
 	@DisplayName("알려지지 않은 고객의 이름을 거주자로 변경한다")
 	@Test
 	void testCustomerName(){
-		Site site = new Site(new Customer("미확인 고객"));
+		Customer customer = new Customer("미확인 고객");
 		String customerName;
 
-		if (site.getCustomer().getName().equals("미확인 고객")){
+		if (customer.getName().equals("미확인 고객")){
 			customerName = "거주자";
 		}else{
-			customerName = site.getCustomer().getName();
+			customerName = customer.getName();
 		}
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
@@ -24,8 +24,7 @@ class SiteTest {
 	@Test
 	void testBillingPlan(){
 	    // given
-		Site site = new Site(new Customer("미확인 고객"));
-		Customer customer = site.getCustomer();
+		Customer customer = new Customer("미확인 고객");
 		Registry registry = new Registry();
 		// when
 	    String plan = customer.getName().equals("미확인 고객") ? registry.billingPlans().basic() : customer.billingPlan().getName();
@@ -37,8 +36,7 @@ class SiteTest {
 	@Test
 	void testNewPlan(){
 	    // given
-		Site site = new Site(new Customer("kim"));
-		Customer customer = site.getCustomer();
+		Customer customer = new Customer("kim");
 		// when
 	    if (!customer.getName().equals("미확인 고객")){
 			customer.setBillingPlan(new BillingPlan("newPlan"));
