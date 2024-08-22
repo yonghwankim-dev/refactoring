@@ -12,7 +12,7 @@ class VoyageRatingCalculatorTest {
 	@Test
 	void rating(){
 	    // given
-		Voyage voyage = new Voyage("서인도", 10);
+		Voyage voyage = new Voyage("중국", 10);
 		List<VoyageHistory> history = List.of(
 			new VoyageHistory("동인도", 5),
 			new VoyageHistory("서인도", 15),
@@ -22,7 +22,7 @@ class VoyageRatingCalculatorTest {
 		// when
 		String rating = new RatingCalculator().rating(voyage, history);
 		// then
-		String expected = "B";
+		String expected = "A";
 		Assertions.assertThat(rating).isEqualTo(expected);
 	}
 

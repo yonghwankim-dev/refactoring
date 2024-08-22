@@ -22,7 +22,7 @@ public class Rating {
 	}
 
 	// 수익 요인
-	private int voyageProfitFactor() {
+	int voyageProfitFactor() {
 		int result = 2;
 		if (voyage.getZone().equals("중국")){
 			result += 1;
@@ -35,12 +35,12 @@ public class Rating {
 		return result;
 	}
 
-	int voyageLengthFactor() {
-		return voyage.getLength() > 14 ? -1 : 0;
+	int historyLengthFactor() {
+		return history.size() > 8 ? 1 : 0;
 	}
 
-	private int historyLengthFactor() {
-		return history.size() > 8 ? 1 : 0;
+	int voyageLengthFactor() {
+		return voyage.getLength() > 14 ? -1 : 0;
 	}
 
 	// 항해 경로 위험요소
