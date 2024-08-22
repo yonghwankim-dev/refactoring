@@ -12,7 +12,7 @@ class SiteTest {
 		Customer customer = new Customer("미확인 고객");
 		String customerName;
 
-		if (customer.getName().equals("미확인 고객")){
+		if (customer.isUnknown()){
 			customerName = "거주자";
 		}else{
 			customerName = customer.getName();
@@ -27,7 +27,7 @@ class SiteTest {
 		Customer customer = new Customer("미확인 고객");
 		Registry registry = new Registry();
 		// when
-	    String plan = customer.getName().equals("미확인 고객") ? registry.billingPlans().basic() : customer.billingPlan().getName();
+	    String plan = customer.isUnknown() ? registry.billingPlans().basic() : customer.billingPlan().getName();
 	    // then
 		Assertions.assertThat(plan).isEqualTo("basic");
 	}
@@ -38,7 +38,7 @@ class SiteTest {
 	    // given
 		Customer customer = new Customer("kim");
 		// when
-	    if (!customer.getName().equals("미확인 고객")){
+	    if (!customer.isUnknown()){
 			customer.setBillingPlan(new BillingPlan("newPlan"));
 		}
 	    // then
@@ -51,7 +51,7 @@ class SiteTest {
 	    // given
 		Customer customer = new Customer("미확인 고객");
 	    // when
-		int weeksDelinquent = customer.getName().equals("미확인 고객") ? 0 : customer.paymentHistory().weeksDelinquentInLastYear();
+		int weeksDelinquent = customer.isUnknown() ? 0 : customer.paymentHistory().weeksDelinquentInLastYear();
 	    // then
 		Assertions.assertThat(weeksDelinquent).isZero();
 	}
