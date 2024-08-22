@@ -1,13 +1,14 @@
 package com.nemo.refactoring.ch10.class04;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.List;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import com.nemo.refactoring.ch10.class04.step01.Bird;
+import com.nemo.refactoring.ch10.class04.step01.BirdAnalyzer;
 
 class BirdAnalyzerTest {
 

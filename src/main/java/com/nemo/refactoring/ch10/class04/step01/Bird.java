@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch10.class04;
+package com.nemo.refactoring.ch10.class04.step01;
 
 public class Bird {
 	private final String name;

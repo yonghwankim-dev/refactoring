@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch10.class04;
+package com.nemo.refactoring.ch10.class04.step01;
 
 import java.util.List;
 import java.util.Map;
