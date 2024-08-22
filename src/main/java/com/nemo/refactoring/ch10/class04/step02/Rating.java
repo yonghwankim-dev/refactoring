@@ -36,11 +36,17 @@ public class Rating {
 
 	int voyageAndHistoryLengthFactor() {
 		int result = 0;
+		result += historyLengthFactor();
+		if (voyage.getLength() > 14){
+			result -= 1;
+		}
+		return result;
+	}
+
+	private int historyLengthFactor() {
+		int result = 0;
 		if (history.size() > 8){
 			result += 1;
-		}
-		if (history.size() > 14){
-			result -= 1;
 		}
 		return result;
 	}
@@ -71,11 +77,11 @@ public class Rating {
 		return Math.max(result, 0);
 	}
 
-	public Voyage getVoyage() {
+	Voyage getVoyage() {
 		return voyage;
 	}
 
-	public List<VoyageHistory> getHistory() {
+	List<VoyageHistory> getHistory() {
 		return history;
 	}
 }
