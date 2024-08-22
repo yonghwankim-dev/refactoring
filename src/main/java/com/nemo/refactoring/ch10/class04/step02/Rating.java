@@ -44,11 +44,7 @@ public class Rating {
 	}
 
 	private int historyLengthFactor() {
-		int result = 0;
-		if (history.size() > 8){
-			result += 1;
-		}
-		return result;
+		return history.size() > 8 ? 1 : 0;
 	}
 
 	// 항해 경로 위험요소

@@ -18,9 +18,7 @@ public class ExperiencedChinaRating extends Rating{
 	int voyageAndHistoryLengthFactor() {
 		int result = 0;
 		result += 3;
-		if (getHistory().size() > 10){
-			result += 1;
-		}
+		result += historyLengthFactor();
 		if (getVoyage().getLength() > 12){
 			result += 1;
 		}
@@ -28,5 +26,9 @@ public class ExperiencedChinaRating extends Rating{
 			result -= 1;
 		}
 		return result;
+	}
+
+	private int historyLengthFactor() {
+		return getHistory().size() > 10 ? 1 : 0;
 	}
 }
