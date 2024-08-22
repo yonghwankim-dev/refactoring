@@ -3,7 +3,7 @@ package com.nemo.refactoring.ch10.class04.step02;
 import java.util.List;
 
 public class VoyageRatingCalculator {
-	public String rating(Voyage voyage, List<Voyage> history) {
+	public String rating(Voyage voyage, List<VoyageHistory> history) {
 		int vpf = voyageProfitFactor(voyage, history);
 		int vr = voyageRisk(voyage);
 		int chr = captainHistoryRisk(voyage, history);
@@ -14,7 +14,7 @@ public class VoyageRatingCalculator {
 	}
 
 	// 수익 요인
-	private int voyageProfitFactor(Voyage voyage, List<Voyage> history) {
+	private int voyageProfitFactor(Voyage voyage, List<VoyageHistory> history) {
 		int result = 2;
 		if (voyage.getZone().equals("중국")){
 			result += 1;
@@ -44,7 +44,7 @@ public class VoyageRatingCalculator {
 		return result;
 	}
 
-	private boolean hasChina(List<Voyage> history) {
+	private boolean hasChina(List<VoyageHistory> history) {
 		return history.stream()
 				.anyMatch(v -> v.getZone().equals("중국"));
 	}
@@ -66,7 +66,7 @@ public class VoyageRatingCalculator {
 	}
 
 	// 선장의 항해 이력 위험요소
-	private int captainHistoryRisk(Voyage voyage, List<Voyage> history) {
+	private int captainHistoryRisk(Voyage voyage, List<VoyageHistory> history) {
 		int result = 1;
 		if (history.size() < 5){
 			result += 4;

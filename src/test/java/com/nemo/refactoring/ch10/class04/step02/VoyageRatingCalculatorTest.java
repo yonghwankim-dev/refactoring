@@ -16,8 +16,13 @@ class VoyageRatingCalculatorTest {
 	void rating(){
 	    // given
 		VoyageRatingCalculator calculator = new VoyageRatingCalculator();
-		Voyage voyage = new Voyage("중국", 10, 10);
-		List<Voyage> history = Collections.emptyList();
+		Voyage voyage = new Voyage("서인도", 10);
+		List<VoyageHistory> history = List.of(
+			new VoyageHistory("동인도", 5),
+			new VoyageHistory("서인도", 15),
+			new VoyageHistory("중국", -2),
+			new VoyageHistory("서아프리카", 7)
+		);
 		// when
 		String rating = calculator.rating(voyage, history);
 		// then
