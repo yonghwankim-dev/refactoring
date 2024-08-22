@@ -4,6 +4,6 @@ import java.util.List;
 
 public class RatingCalculator {
 	public String rating(Voyage voyage, List<VoyageHistory> history) {
-		return new Rating(voyage, history).value();
+		return RatingFactory.createRating(voyage, history).value();
 	}
 }

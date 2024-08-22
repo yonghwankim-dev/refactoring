@@ -30,32 +30,19 @@ public class Rating {
 		if (voyage.getZone().equals("동인도")){
 			result += 1;
 		}
-		if (voyage.getZone().equals("중국") && hasChinaHistory()){
-			result += 3;
-			if (history.size() > 10){
-				result += 1;
-			}
-			if (voyage.getLength() > 12){
-				result += 1;
-			}
-			if (voyage.getLength() > 18){
-				result -= 1;
-			}
-		}else{
-			if (history.size() > 8){
-				result += 1;
-			}
-			if (history.size() > 14){
-				result -= 1;
-			}
-		}
+		result += voyageAndHistoryLengthFactor();
 		return result;
 	}
 
-	private boolean hasChinaHistory() {
-		return history.stream()
-			.map(VoyageHistory::getZone)
-			.anyMatch(zone -> zone.equals("중국"));
+	int voyageAndHistoryLengthFactor() {
+		int result = 0;
+		if (history.size() > 8){
+			result += 1;
+		}
+		if (history.size() > 14){
+			result -= 1;
+		}
+		return result;
 	}
 
 	// 항해 경로 위험요소
@@ -75,15 +62,20 @@ public class Rating {
 	}
 
 	// 선장의 항해 이력 위험요소
-	private int captainHistoryRisk() {
+	int captainHistoryRisk() {
 		int result = 1;
 		if (history.size() < 5){
 			result += 4;
 		}
 		result += (int)history.stream().filter(v->v.getProfit() < 0).count();
-		if (voyage.getZone().equals("중국") && hasChinaHistory()){
-			result -= 2;
-		}
 		return Math.max(result, 0);
+	}
+
+	public Voyage getVoyage() {
+		return voyage;
+	}
+
+	public List<VoyageHistory> getHistory() {
+		return history;
 	}
 }
