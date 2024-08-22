@@ -30,7 +30,7 @@ public class Rating {
 		if (voyage.getZone().equals("동인도")){
 			result += 1;
 		}
-		if (voyage.getZone().equals("중국") && hasChina()){
+		if (voyage.getZone().equals("중국") && hasChinaHistory()){
 			result += 3;
 			if (history.size() > 10){
 				result += 1;
@@ -52,9 +52,10 @@ public class Rating {
 		return result;
 	}
 
-	private boolean hasChina() {
+	private boolean hasChinaHistory() {
 		return history.stream()
-				.anyMatch(v -> v.getZone().equals("중국"));
+			.map(VoyageHistory::getZone)
+			.anyMatch(zone -> zone.equals("중국"));
 	}
 
 	// 항해 경로 위험요소
@@ -80,7 +81,7 @@ public class Rating {
 			result += 4;
 		}
 		result += (int)history.stream().filter(v->v.getProfit() < 0).count();
-		if (voyage.getZone().equals("중국") && hasChina()){
+		if (voyage.getZone().equals("중국") && hasChinaHistory()){
 			result -= 2;
 		}
 		return Math.max(result, 0);
