@@ -11,6 +11,14 @@ public class UnknownCustomer{
 	}
 
 	public Plan billingPlan() {
-		return new Plan("basic", 50);
+		return new Plan("basic", 100);
+	}
+
+	public void setBillingPlan(Plan plan){
+		// this code is ignored
+	}
+
+	public PaymentHistory getPaymentHistory() {
+		return new NullPaymentHistory(false, 0);
 	}
 }

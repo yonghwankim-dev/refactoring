@@ -1,7 +1,5 @@
 package com.nemo.refactoring.ch10.class05.step01;
 
-import java.util.List;
-
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -26,26 +24,17 @@ class SiteTest {
 		if (arg instanceof Customer){
 			return ((Customer)arg).isUnknown();
 		}
-		if (arg instanceof UnknownCustomer){
-			return ((UnknownCustomer)arg).isUnknown();
-		}
-		return false;
+		return ((UnknownCustomer)arg).isUnknown();
 	}
 
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")
 	@Test
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
 	    // given
-		Registry registry = new Registry(List.of(new Plan("basic", 100)));
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
 	    // when
-		Plan plan = null;
-		if (isUnknown(customer)){
-			plan = registry.basic();
-		}else{
-			plan = customer.billingPlan();
-		}
+		Plan plan = customer.billingPlan();
 	    // then
 		Assertions.assertThat(plan).isEqualTo(new Plan("basic", 100));
 	}
@@ -71,14 +60,21 @@ class SiteTest {
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
 		Customer customer = (Customer)site.getCustomer();
 	    // when
-		int weeksDelinquent = 0;
-		if (isUnknown(customer)){
-			weeksDelinquent = 0;
-		}else{
-			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
-		}
+		int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
 	    // then
 		Assertions.assertThat(weeksDelinquent).isEqualTo(2);
+	}
+
+	@DisplayName("미확인 고객의 지연 주수는 0이다")
+	@Test
+	void calculateWeeksDelinquent_WhenCustomerIsIdentified(){
+		// given
+		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(true, 2)));
+		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
+		// when
+		int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		// then
+		Assertions.assertThat(weeksDelinquent).isEqualTo(0);
 	}
 
 	@DisplayName("Customer나 미확인 고객 문자열이 아니라면 isUnknown 메서드는 예외를 발생시킨다")
