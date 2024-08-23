@@ -13,4 +13,12 @@ public class PaymentHistory {
 	public int getWeeksDelinquentInLastYear() {
 		return delinquent ? delinquentWeeks : 0;
 	}
+
+	public boolean isDelinquent() {
+		return delinquent;
+	}
+
+	public int getDelinquentWeeks() {
+		return delinquentWeeks;
+	}
 }

@@ -1,7 +1,7 @@
 package com.nemo.refactoring.ch10.class05.step02;
 
 public class Customer {
-	private final boolean isUnknown;
+	private boolean isUnknown;
 	private final String name;
 	private Plan plan;
 	private PaymentHistory paymentHistory;
@@ -39,5 +39,9 @@ public class Customer {
 
 	public PaymentHistory getPaymentHistory() {
 		return paymentHistory;
+	}
+
+	public void setIsUnknown(boolean isUnknown) {
+		this.isUnknown = isUnknown;
 	}
 }

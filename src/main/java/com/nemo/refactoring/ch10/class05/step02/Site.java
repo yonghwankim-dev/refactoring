@@ -1,9 +1,13 @@
 package com.nemo.refactoring.ch10.class05.step02;
 
 public class Site {
-	private final Customer customer;
+	private final String name;
+	private final String location;
+	private Customer customer;
 
-	public Site(Customer customer) {
+	public Site(String name, String location, Customer customer) {
+		this.name = name;
+		this.location = location;
 		this.customer = customer;
 	}
 
@@ -13,5 +17,17 @@ public class Site {
 
 	private Customer createUnknownCustomer(){
 		return new UnknownCustomer();
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
 	}
 }

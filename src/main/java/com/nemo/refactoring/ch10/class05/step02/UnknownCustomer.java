@@ -3,7 +3,7 @@ package com.nemo.refactoring.ch10.class05.step02;
 public class UnknownCustomer extends Customer {
 
 	public UnknownCustomer() {
-		super(true, "거주자", new Plan("basic", 100), null);
+		super(true, "거주자", new Plan("basic", 100), new PaymentHistory(false, 0));
 	}
 
 	@Override
