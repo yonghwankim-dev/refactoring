@@ -1,13 +1,16 @@
 package com.nemo.refactoring.ch10.class05.step01;
 
-public class UnknownCustomer extends Customer{
+public class UnknownCustomer{
 
-	public UnknownCustomer(String name, Plan plan, PaymentHistory paymentHistory) {
-		super(name, plan, paymentHistory);
+	public String getName() {
+		return "거주자";
 	}
 
-	@Override
 	public boolean isUnknown() {
 		return true;
+	}
+
+	public Plan billingPlan() {
+		return new Plan("basic", 50);
 	}
 }

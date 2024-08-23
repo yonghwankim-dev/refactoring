@@ -7,7 +7,7 @@ public class Site {
 		this.customer = customer;
 	}
 
-	public Customer getCustomer() {
-		return customer.getName().equals("미확인 고객") ? new UnknownCustomer("거주자", new Plan("basic", 100), null) : this.customer;
+	public Object getCustomer() {
+		return customer.getName().equals("미확인 고객") ? new UnknownCustomer() : this.customer;
 	}
 }

@@ -12,14 +12,9 @@ class SiteTest {
 	void changeCustomerNameToResident_WhenCustomerIsUnidentifiedAndResidingInSite(){
 	    // given
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		Customer customer = site.getCustomer();
+		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
 		// when
-		String customerName;
-		if (isUnknown(customer)){
-			customerName = "거주자";
-		}else{
-			customerName = customer.getName();
-		}
+		String customerName = customer.getName();
 	    // then
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
@@ -28,7 +23,13 @@ class SiteTest {
 		if (!((arg instanceof Customer) || (arg instanceof UnknownCustomer))){
 			throw new IllegalArgumentException("잘못된 값과 비교: arg="+arg);
 		}
-		return ((Customer)arg).isUnknown();
+		if (arg instanceof Customer){
+			return ((Customer)arg).isUnknown();
+		}
+		if (arg instanceof UnknownCustomer){
+			return ((UnknownCustomer)arg).isUnknown();
+		}
+		return false;
 	}
 
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")
@@ -37,7 +38,7 @@ class SiteTest {
 	    // given
 		Registry registry = new Registry(List.of(new Plan("basic", 100)));
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		Customer customer = site.getCustomer();
+		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
 	    // when
 		Plan plan = null;
 		if (isUnknown(customer)){
@@ -54,7 +55,7 @@ class SiteTest {
 	void SetNewRatePlan_WhenCustomerIsIdentified(){
 	    // given
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		Customer customer = site.getCustomer();
+		Customer customer = (Customer)site.getCustomer();
 	    // when
 		if (!isUnknown(customer)){
 			customer.setBillingPlan(new Plan("special", 200));
@@ -68,7 +69,7 @@ class SiteTest {
 	void calculateDelayWeeks_WhenCustomerIsIdentifiedOrSetToZeroIfUnidentified(){
 	    // given
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
-		Customer customer = site.getCustomer();
+		Customer customer = (Customer)site.getCustomer();
 	    // when
 		int weeksDelinquent = 0;
 		if (isUnknown(customer)){
