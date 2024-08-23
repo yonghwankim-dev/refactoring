@@ -9,7 +9,7 @@ class SiteTest {
 	@Test
 	void changeCustomerNameToResident_WhenCustomerIsUnidentifiedAndResidingInSite(){
 	    // given
-		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
+		Site site = new Site(new Customer(true, "미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = site.getCustomer();
 		// when
 		String customerName;
@@ -30,7 +30,7 @@ class SiteTest {
 	@Test
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
 	    // given
-		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
+		Site site = new Site(new Customer(true, "미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = site.getCustomer();
 		// when
 		Plan plan;
@@ -47,8 +47,8 @@ class SiteTest {
 	@Test
 	void SetNewRatePlan_WhenCustomerIsIdentified(){
 	    // given
-		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		Customer customer = (Customer)site.getCustomer();
+		Site site = new Site(new Customer(false, "kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
+		Customer customer = site.getCustomer();
 	    // when
 		if (!isUnknown(customer)){
 			customer.setBillingPlan(new Plan("special", 200));
@@ -61,8 +61,8 @@ class SiteTest {
 	@Test
 	void calculateDelayWeeks_WhenCustomerIsIdentifiedOrSetToZeroIfUnidentified(){
 	    // given
-		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
-		Customer customer = (Customer)site.getCustomer();
+		Site site = new Site(new Customer(false, "kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
+		Customer customer = site.getCustomer();
 	    // when
 		int weeksDelinquent;
 		if (isUnknown(customer)){
@@ -78,7 +78,7 @@ class SiteTest {
 	@Test
 	void calculateWeeksDelinquent_WhenCustomerIsIdentified(){
 		// given
-		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(true, 2)));
+		Site site = new Site(new Customer(true, "미확인 고객", new Plan("요금제", 50), new PaymentHistory(true, 2)));
 		Customer customer = site.getCustomer();
 		// when
 		int weeksDelinquent = 0;
