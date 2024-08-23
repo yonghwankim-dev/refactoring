@@ -13,6 +13,14 @@ public class Customer {
 		this.paymentHistory = paymentHistory;
 	}
 
+	public static Customer knownCustomer(String name, Plan plan, PaymentHistory paymentHistory){
+		return new Customer(false, name, plan, paymentHistory);
+	}
+
+	public static Customer create(String name) {
+		return new Customer(false,  name, null, new NullPaymentHistory(false, 0));
+	}
+
 	public boolean isUnknown() {
 		return isUnknown;
 	}

@@ -12,12 +12,7 @@ class SiteTest {
 		Site site = new Site(new Customer(true, "미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = site.getCustomer();
 		// when
-		String customerName;
-		if (isUnknown(customer)){
-			customerName = "거주자";
-		}else{
-			customerName = customer.getName();
-		}
+		String customerName = customer.getName();
 	    // then
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
@@ -30,15 +25,10 @@ class SiteTest {
 	@Test
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
 	    // given
-		Site site = new Site(new Customer(true, "미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
+		Site site = new Site(Customer.create("미확인 고객"));
 		Customer customer = site.getCustomer();
 		// when
-		Plan plan;
-		if (isUnknown(customer)){
-			plan = new Plan("basic", 100);
-		}else{
-			plan = customer.getBillingPlan();
-		}
+		Plan plan = customer.getBillingPlan();
 	    // then
 		Assertions.assertThat(plan).isEqualTo(new Plan("basic", 100));
 	}
