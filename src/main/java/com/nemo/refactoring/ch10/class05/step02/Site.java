@@ -7,7 +7,7 @@ public class Site {
 		this.customer = customer;
 	}
 
-	public Object getCustomer() {
+	public Customer getCustomer() {
 		return this.customer;
 	}
 }

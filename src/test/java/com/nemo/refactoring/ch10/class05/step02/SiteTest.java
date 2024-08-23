@@ -10,9 +10,14 @@ class SiteTest {
 	void changeCustomerNameToResident_WhenCustomerIsUnidentifiedAndResidingInSite(){
 	    // given
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
+		Customer customer = site.getCustomer();
 		// when
-		String customerName = customer.getName();
+		String customerName;
+		if (customer.getName().equals("미확인 고객")){
+			customerName = "거주자";
+		}else{
+			customerName = customer.getName();
+		}
 	    // then
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
@@ -29,9 +34,14 @@ class SiteTest {
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
 	    // given
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
-		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
-	    // when
-		Plan plan = customer.getBillingPlan();
+		Customer customer = site.getCustomer();
+		// when
+		Plan plan;
+		if (customer.getName().equals("미확인 고객")){
+			plan = new Plan("basic", 100);
+		}else{
+			plan = customer.getBillingPlan();
+		}
 	    // then
 		Assertions.assertThat(plan).isEqualTo(new Plan("basic", 100));
 	}
@@ -43,7 +53,7 @@ class SiteTest {
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = (Customer)site.getCustomer();
 	    // when
-		if (!isUnknown(customer)){
+		if (!customer.getName().equals("미확인 고객")){
 			customer.setBillingPlan(new Plan("special", 200));
 		}
 	    // then
@@ -57,7 +67,12 @@ class SiteTest {
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
 		Customer customer = (Customer)site.getCustomer();
 	    // when
-		int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		int weeksDelinquent;
+		if (customer.getName().equals("미확인 고객")){
+			weeksDelinquent = 0;
+		}else{
+			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		}
 	    // then
 		Assertions.assertThat(weeksDelinquent).isEqualTo(2);
 	}
@@ -67,9 +82,12 @@ class SiteTest {
 	void calculateWeeksDelinquent_WhenCustomerIsIdentified(){
 		// given
 		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(true, 2)));
-		UnknownCustomer customer = (UnknownCustomer)site.getCustomer();
+		Customer customer = site.getCustomer();
 		// when
-		int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		int weeksDelinquent = 0;
+		if (!customer.getName().equals("미확인 고객")){
+			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		}
 		// then
 		Assertions.assertThat(weeksDelinquent).isZero();
 	}
