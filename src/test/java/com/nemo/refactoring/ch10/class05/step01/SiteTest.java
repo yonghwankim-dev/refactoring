@@ -11,11 +11,11 @@ class SiteTest {
 	@Test
 	void changeCustomerNameToResident_WhenCustomerIsUnidentifiedAndResidingInSite(){
 	    // given
-		Site site = new Site(new Customer("미확인 고객"));
+		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = site.getCustomer();
 		// when
 		String customerName;
-		if (customer.getName().equals("미확인 고객")){
+		if (isUnknown(customer)){
 			customerName = "거주자";
 		}else{
 			customerName = customer.getName();
@@ -24,21 +24,62 @@ class SiteTest {
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
 
+	private boolean isUnknown(Object arg) {
+		if (!((arg instanceof Customer) || (arg.equals("미확인 고객")))){
+			throw new IllegalArgumentException("잘못된 값과 비교: arg="+arg);
+		}
+		if (arg instanceof Customer){
+			return ((Customer)arg).getName().equals("미확인 고객");
+		}
+		return arg.equals("미확인 고객");
+	}
+
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")
 	@Test
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
 	    // given
 		Registry registry = new Registry(List.of(new Plan("basic", 100)));
-		Site site = new Site(new Customer("미확인 고객"));
+		Site site = new Site(new Customer("미확인 고객", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = site.getCustomer();
 	    // when
 		Plan plan = null;
-		if (customer.getName().equals("미확인 고객")){
+		if (isUnknown(customer)){
 			plan = registry.basic();
 		}else{
 			plan = customer.billingPlan();
 		}
 	    // then
 		Assertions.assertThat(plan).isEqualTo(new Plan("basic", 100));
+	}
+
+	@DisplayName("고객이 미확인 고객이 아닌 고객은 새로운 요금제를 설정한다")
+	@Test
+	void SetNewRatePlan_WhenCustomerIsIdentified(){
+	    // given
+		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
+		Customer customer = site.getCustomer();
+	    // when
+		if (!isUnknown(customer)){
+			customer.setBillingPlan(new Plan("special", 200));
+		}
+	    // then
+		Assertions.assertThat(customer.billingPlan()).isEqualTo(new Plan("special", 200));
+	}
+
+	@DisplayName("고객이 미확인 고객이면 지연 주수가 0이고 미확인 고객이 아니면 히스토리를 통해서 지연 주수를 계산한다")
+	@Test
+	void calculateDelayWeeks_WhenCustomerIsIdentifiedOrSetToZeroIfUnidentified(){
+	    // given
+		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(true, 2)));
+		Customer customer = site.getCustomer();
+	    // when
+		int weeksDelinquent = 0;
+		if (isUnknown(customer)){
+			weeksDelinquent = 0;
+		}else{
+			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+		}
+	    // then
+		Assertions.assertThat(weeksDelinquent).isEqualTo(2);
 	}
 }

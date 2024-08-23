@@ -1,10 +1,20 @@
 package com.nemo.refactoring.ch10.class05.step01;
 
+import java.util.List;
+
 public class Customer {
 	private final String name;
+	private Plan plan;
+	private PaymentHistory paymentHistory;
 
-	public Customer(String name) {
+	public Customer(String name, Plan plan, PaymentHistory paymentHistory) {
 		this.name = name;
+		this.plan = plan;
+		this.paymentHistory = paymentHistory;
+	}
+
+	public boolean isUnknown() {
+		return false;
 	}
 
 	public String getName() {
@@ -12,6 +22,14 @@ public class Customer {
 	}
 
 	public Plan billingPlan() {
-		return new Plan("요금제", 1000);
+		return this.plan;
+	}
+
+	public void setBillingPlan(Plan plan) {
+		this.plan = plan;
+	}
+
+	public PaymentHistory getPaymentHistory() {
+		return paymentHistory;
 	}
 }
