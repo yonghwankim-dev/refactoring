@@ -8,6 +8,10 @@ public class Site {
 	}
 
 	public Customer getCustomer() {
-		return this.customer;
+		return this.customer.getName().equals("미확인 고객") ? createUnknownCustomer() : this.customer;
+	}
+
+	private Customer createUnknownCustomer(){
+		return new UnknownCustomer();
 	}
 }

@@ -26,10 +26,6 @@ class SiteTest {
 		return customer.getName().equals("미확인 고객");
 	}
 
-	private Customer createUnknownCustomer(){
-		return new UnknownCustomer();
-	}
-
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")
 	@Test
 	void calculateDefaultRate_WhenCustomerIsUnidentifiedInSite(){
