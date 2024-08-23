@@ -18,13 +18,10 @@ class SiteTest {
 	}
 
 	private boolean isUnknown(Object arg) {
-		if (!((arg instanceof Customer) || (arg instanceof UnknownCustomer))){
+		if (!(arg instanceof Customer)){
 			throw new IllegalArgumentException("잘못된 값과 비교: arg="+arg);
 		}
-		if (arg instanceof Customer){
-			return ((Customer)arg).isUnknown();
-		}
-		return ((UnknownCustomer)arg).isUnknown();
+		return ((Customer)arg).isUnknown();
 	}
 
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")
@@ -74,7 +71,7 @@ class SiteTest {
 		// when
 		int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
 		// then
-		Assertions.assertThat(weeksDelinquent).isEqualTo(0);
+		Assertions.assertThat(weeksDelinquent).isZero();
 	}
 
 	@DisplayName("Customer나 미확인 고객 문자열이 아니라면 isUnknown 메서드는 예외를 발생시킨다")
