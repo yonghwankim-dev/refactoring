@@ -1,6 +1,5 @@
 package com.nemo.refactoring.ch10.class05.step02;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.Map;
 
 import org.assertj.core.api.Assertions;
@@ -95,12 +94,7 @@ class SiteTest {
 		Site site = enrichSite(rawSite);
 		Customer customer = site.getCustomer();
 		// when
-		String customerName;
-		if (isUnknown(customer)){
-			customerName = "거주자";
-		}else{
-			customerName = customer.getName();
-		}
+		String customerName = customer.getName();
 	    // then
 		Assertions.assertThat(customerName).isEqualTo("거주자");
 	}
