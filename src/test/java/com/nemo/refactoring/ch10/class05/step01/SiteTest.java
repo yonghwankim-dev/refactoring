@@ -82,4 +82,17 @@ class SiteTest {
 	    // then
 		Assertions.assertThat(weeksDelinquent).isEqualTo(2);
 	}
+
+	@DisplayName("Customer나 미확인 고객 문자열이 아니라면 isUnknown 메서드는 예외를 발생시킨다")
+	@Test
+	void throwException_WhenCustomerNameIsNotRecognizedInIsUnknownMethod(){
+	    // given
+		int arg = 1;
+	    // when
+		Throwable throwable = Assertions.catchThrowable(() -> isUnknown(arg));
+		// then
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("잘못된 값과 비교: arg=1");
+	}
 }
