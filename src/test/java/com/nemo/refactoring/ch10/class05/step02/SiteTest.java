@@ -13,13 +13,17 @@ class SiteTest {
 		Customer customer = site.getCustomer();
 		// when
 		String customerName;
-		if (customer.getName().equals("미확인 고객")){
+		if (isUnknown(customer)){
 			customerName = "거주자";
 		}else{
 			customerName = customer.getName();
 		}
 	    // then
 		Assertions.assertThat(customerName).isEqualTo("거주자");
+	}
+
+	private boolean isUnknown(Customer customer) {
+		return customer.getName().equals("미확인 고객");
 	}
 
 	private Customer createUnknownCustomer(){
@@ -34,7 +38,7 @@ class SiteTest {
 		Customer customer = site.getCustomer();
 		// when
 		Plan plan;
-		if (customer.getName().equals("미확인 고객")){
+		if (isUnknown(customer)){
 			plan = new Plan("basic", 100);
 		}else{
 			plan = customer.getBillingPlan();
@@ -50,7 +54,7 @@ class SiteTest {
 		Site site = new Site(new Customer("kim", new Plan("요금제", 50), new PaymentHistory(false, 0)));
 		Customer customer = (Customer)site.getCustomer();
 	    // when
-		if (!customer.getName().equals("미확인 고객")){
+		if (!isUnknown(customer)){
 			customer.setBillingPlan(new Plan("special", 200));
 		}
 	    // then
@@ -65,7 +69,7 @@ class SiteTest {
 		Customer customer = (Customer)site.getCustomer();
 	    // when
 		int weeksDelinquent;
-		if (customer.getName().equals("미확인 고객")){
+		if (isUnknown(customer)){
 			weeksDelinquent = 0;
 		}else{
 			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
@@ -82,7 +86,7 @@ class SiteTest {
 		Customer customer = site.getCustomer();
 		// when
 		int weeksDelinquent = 0;
-		if (!customer.getName().equals("미확인 고객")){
+		if (!isUnknown(customer)){
 			weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
 		}
 		// then
