@@ -25,13 +25,10 @@ class SiteTest {
 	}
 
 	private boolean isUnknown(Object arg) {
-		if (!((arg instanceof Customer) || (arg.equals("미확인 고객")))){
+		if (!((arg instanceof Customer) || (arg instanceof UnknownCustomer))){
 			throw new IllegalArgumentException("잘못된 값과 비교: arg="+arg);
 		}
-		if (arg instanceof Customer){
-			return ((Customer)arg).getName().equals("미확인 고객");
-		}
-		return arg.equals("미확인 고객");
+		return ((Customer)arg).isUnknown();
 	}
 
 	@DisplayName("거주하는 공간의 고객이 미확인 고객은 기본 요금으로 계산한다")

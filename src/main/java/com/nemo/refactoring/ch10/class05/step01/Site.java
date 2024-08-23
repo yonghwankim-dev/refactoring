@@ -8,6 +8,6 @@ public class Site {
 	}
 
 	public Customer getCustomer() {
-		return customer;
+		return customer.getName().equals("미확인 고객") ? new UnknownCustomer("거주자", new Plan("basic", 100), null) : this.customer;
 	}
 }
