@@ -8,11 +8,9 @@ public class VillainDetector {
 	public String findMiscreant(List<String> people) {
 		for (String p : people){
 			if (p.equals("jocker")){
-				sendAlert();
 				return "jocker";
 			}
 			if (p.equals("saruman")){
-				sendAlert();
 				return "saruman";
 			}
 		}
