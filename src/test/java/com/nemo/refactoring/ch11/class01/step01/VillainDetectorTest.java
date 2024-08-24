@@ -16,6 +16,7 @@ class VillainDetectorTest {
 		List<String> people = List.of("jocker", "poisonivy", "mario");
 		// when
 		String villain = detector.findMiscreant(people);
+		detector.alertForMiscreant(people);
 		// then
 		Assertions.assertThat(villain).isEqualTo("jocker");
 	}

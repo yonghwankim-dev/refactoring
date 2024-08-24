@@ -17,6 +17,19 @@ public class VillainDetector {
 		return Strings.EMPTY;
 	}
 
+	public void alertForMiscreant(List<String> people) {
+		for (String p : people){
+			if (p.equals("jocker")){
+				sendAlert();
+				return;
+			}
+			if (p.equals("saruman")){
+				sendAlert();
+				return;
+			}
+		}
+	}
+
 	private void sendAlert() {
 		System.out.println("alert villain!!");
 	}
