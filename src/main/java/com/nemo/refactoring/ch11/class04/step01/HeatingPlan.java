@@ -7,8 +7,8 @@ public class HeatingPlan {
 		this.temperatureRange = temperatureRange;
 	}
 
-	public boolean withinRange(int bottom, int top) {
-		return (bottom >= this.temperatureRange.getLow())
-			&& (top <= this.temperatureRange.getHigh());
+	public boolean withinRange(NumberRange range) {
+		return (range.getBottom() >= this.temperatureRange.getLow())
+			&& (range.getTop() <= this.temperatureRange.getHigh());
 	}
 }

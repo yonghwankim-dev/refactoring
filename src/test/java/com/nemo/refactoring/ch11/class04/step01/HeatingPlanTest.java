@@ -15,7 +15,7 @@ class HeatingPlanTest {
 		int bottom = 25;
 		int top = 27;
 		// when
-		boolean withinRange = heatingPlan.withinRange(bottom, top);
+		boolean withinRange = heatingPlan.withinRange(new NumberRange(bottom, top));
 		// then
 		Assertions.assertThat(withinRange).isTrue();
 	}
