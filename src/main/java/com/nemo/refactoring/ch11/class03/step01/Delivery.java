@@ -4,15 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class Delivery {
-	public LocalDate deliveryDate(Order order, boolean isRush){
-		if(isRush){
-			return rushDeliveryDate(order);
-		}else{
-			return regularDeliveryDate(order);
-		}
-	}
 
-	private LocalDate rushDeliveryDate(Order order) {
+	public LocalDate rushDeliveryDate(Order order) {
 		int deliveryTime = 0;
 		if (List.of("MA", "CT").contains(order.getDeliveryState())){
 			deliveryTime += 1;
@@ -24,7 +17,7 @@ public class Delivery {
 		return order.getPlacedOn().plusDays(1 + deliveryTime);
 	}
 
-	private LocalDate regularDeliveryDate(Order order) {
+	public LocalDate regularDeliveryDate(Order order) {
 		int deliveryTime = 0;
 		if (List.of("MA", "CT", "NY").contains(order.getDeliveryState())){
 			deliveryTime += 2;
