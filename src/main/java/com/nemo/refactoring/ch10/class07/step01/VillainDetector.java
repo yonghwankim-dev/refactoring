@@ -4,18 +4,11 @@ import java.util.List;
 
 public class VillainDetector {
 	public boolean checkForMiscreants(List<String> people) {
-		boolean found = false;
-		for (String p : people){
-			if (!found){
-				if (p.equals("jocker")){
-					sendAlert();
-					found = true;
-				}
-				if (p.equals("saruman")){
-					sendAlert();
-					found = true;
-				}
-			}
+		List<String> villain = List.of("jocker", "saruman");
+		boolean found = people.stream()
+			.anyMatch(villain::contains);
+		if (found) {
+			sendAlert();
 		}
 		return found;
 	}
