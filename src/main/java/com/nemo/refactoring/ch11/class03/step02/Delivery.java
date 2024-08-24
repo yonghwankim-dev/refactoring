@@ -4,7 +4,15 @@ import java.time.LocalDate;
 
 public class Delivery {
 
-	public LocalDate deliveryDate(Order order, boolean isRush){
+	public LocalDate rushDeliveryDate(Order order){
+		return deliveryDate(order, true);
+	}
+
+	public LocalDate regularDeliveryDate(Order order){
+		return deliveryDate(order, false);
+	}
+
+	private LocalDate deliveryDate(Order order, boolean isRush){
 		LocalDate result;
 		int deliveryTime;
 		if (order.getDeliveryState().equals("MA") || order.getDeliveryState().equals("CT")) {

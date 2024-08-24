@@ -17,7 +17,7 @@ class DeliveryTest {
 		Order order = new Order("MA", LocalDate.now());
 		boolean isRush = true;
 		// when
-		LocalDate deliveryDate = delivery.deliveryDate(order, isRush);
+		LocalDate deliveryDate = delivery.rushDeliveryDate(order);
 		// then
 		LocalDate expectedDeliveryDate = LocalDate.now().plusDays(2);
 		Assertions.assertThat(deliveryDate).isEqualTo(expectedDeliveryDate);
