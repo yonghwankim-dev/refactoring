@@ -15,7 +15,6 @@ class DeliveryTest {
 	    // given
 		Delivery delivery = new Delivery();
 		Order order = new Order("MA", LocalDate.now());
-		boolean isRush = true;
 		// when
 		LocalDate deliveryDate = delivery.rushDeliveryDate(order);
 		// then
