@@ -13,11 +13,23 @@ class CustomerTest {
 	@Test
 	void applyDiscount(){
 	    // given
-		Customer customer = new Customer();
+		Customer customer = new Customer(0.1);
 		int price = 10000;
 		// when
 		int discountedPrice = customer.applyDiscount(price);
 		// then
 		Assertions.assertThat(discountedPrice).isEqualTo(9000);
+	}
+
+	@DisplayName("할인율이 음수인 경우 할인받을 수 없다")
+	@Test
+	void applyDiscount_whenDiscountRateIsNegative(){
+		// given
+		Customer customer = new Customer(-0.1);
+		int price = 10000;
+		// when
+		int discountedPrice = customer.applyDiscount(price);
+		// then
+		Assertions.assertThat(discountedPrice).isEqualTo(10000);
 	}
 }
