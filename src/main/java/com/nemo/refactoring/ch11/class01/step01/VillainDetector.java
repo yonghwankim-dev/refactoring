@@ -18,16 +18,10 @@ public class VillainDetector {
 	}
 
 	public void alertForMiscreant(List<String> people) {
-		for (String p : people){
-			if (p.equals("jocker")){
-				sendAlert();
-				return;
-			}
-			if (p.equals("saruman")){
-				sendAlert();
-				return;
-			}
+		if (findMiscreant(people).isEmpty()){
+			return;
 		}
+		sendAlert();
 	}
 
 	private void sendAlert() {
