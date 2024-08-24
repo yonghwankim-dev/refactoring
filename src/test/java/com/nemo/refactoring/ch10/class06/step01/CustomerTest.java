@@ -25,11 +25,12 @@ class CustomerTest {
 	@Test
 	void applyDiscount_whenDiscountRateIsNegative(){
 		// given
-		Customer customer = new Customer(-0.1);
-		int price = 10000;
+		double discountRate = -0.1;
 		// when
-		int discountedPrice = customer.applyDiscount(price);
+		Throwable throwable = Assertions.catchThrowable(() -> new Customer(discountRate));
 		// then
-		Assertions.assertThat(discountedPrice).isEqualTo(10000);
+		Assertions.assertThat(throwable)
+			.isInstanceOf(IllegalArgumentException.class)
+			.hasMessage("discountRate must positive");
 	}
 }
