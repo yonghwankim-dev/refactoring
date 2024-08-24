@@ -16,7 +16,7 @@ public class ChargeCalculator {
 	}
 
 	private int withinBand(int usage, int bottom, int top) {
-		return usage > 100 ? Math.min(usage, 200) - 100 : 0;
+		return usage > bottom ? Math.min(usage, top) - bottom : 0;
 	}
 
 	private int topBand(int usage) {
