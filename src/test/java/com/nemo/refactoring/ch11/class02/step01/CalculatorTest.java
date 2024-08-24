@@ -18,7 +18,7 @@ class CalculatorTest {
 		Assertions.assertThat(salary).isEqualTo(2_200_000);
 	}
 
-	@DisplayName("한 사람의 월급을 %% 올려서 계산한다")
+	@DisplayName("한 사람의 월급을 5% 올려서 계산한다")
 	@Test
 	void fivePercentRaise(){
 		// given
