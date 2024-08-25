@@ -12,16 +12,16 @@ class HeatingPlanTest {
 		// given
 		HeatingPlan heatingPlan = new HeatingPlan(20, 30);
 		Thermostat thermostat = new Thermostat(25);
-		// when
-		if (heatingPlan.targetTemperature() > thermostat.selectedTemperature()) {
+		if (heatingPlan.targetTemperature(thermostat.selectedTemperature()) > thermostat.selectedTemperature()) {
 			setToHeat();
-		} else if (heatingPlan.targetTemperature() < thermostat.selectedTemperature()) {
+		} else if (heatingPlan.targetTemperature(thermostat.selectedTemperature())
+			< thermostat.selectedTemperature()) {
 			setToCold();
 		} else {
 			setOff();
 		}
-		// then
-		int temperature = heatingPlan.targetTemperature();
+		// when
+		int temperature = heatingPlan.targetTemperature(25);
 		// then
 		Assertions.assertThat(temperature).isEqualTo(25);
 	}

@@ -12,12 +12,12 @@ public class HeatingPlan {
 		this.thermostat = new Thermostat(25);
 	}
 
-	public int targetTemperature() {
-		if (thermostat.selectedTemperature() > max) {
+	public int targetTemperature(int selectedTemperature) {
+		if (selectedTemperature > max) {
 			return max;
-		} else if (thermostat.selectedTemperature() < min) {
+		} else if (selectedTemperature < min) {
 			return min;
 		}
-		return thermostat.selectedTemperature();
+		return selectedTemperature;
 	}
 }
