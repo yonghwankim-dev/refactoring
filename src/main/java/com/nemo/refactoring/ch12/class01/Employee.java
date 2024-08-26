@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch12;
+package com.nemo.refactoring.ch12.class01;
 
 public class Employee extends Party {
 	public Employee(int monthlyCost) {

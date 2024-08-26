@@ -1,4 +1,4 @@
-package com.nemo.refactoring.ch12;
+package com.nemo.refactoring.ch12.class01;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
