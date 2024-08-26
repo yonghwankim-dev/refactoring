@@ -13,8 +13,10 @@ class EmployeeTest {
 		String name = "kim";
 		Employee.TypeCode typeCode = Employee.TypeCode.ENGINEER;
 		// when
-		Employee kim = new Employee(name, typeCode);
+		Employee kim = Employee.createEmployee(name, typeCode);
+		Employee kim2 = Employee.createEngineer(name);
 		// then
 		Assertions.assertThat(kim).isNotNull();
+		Assertions.assertThat(kim2).isNotNull();
 	}
 }

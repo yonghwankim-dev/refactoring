@@ -12,4 +12,12 @@ public class Employee {
 		this.name = name;
 		this.typeCode = typeCode;
 	}
+
+	public static Employee createEmployee(String name, TypeCode typeCode) {
+		return new Employee(name, typeCode);
+	}
+
+	public static Employee createEngineer(String name) {
+		return new Employee(name, TypeCode.ENGINEER);
+	}
 }
