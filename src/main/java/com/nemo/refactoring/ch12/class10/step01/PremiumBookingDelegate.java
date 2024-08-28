@@ -14,10 +14,17 @@ public class PremiumBookingDelegate {
 	public boolean hasTalkback() {
 		return host.show.hasOwnProperty("talkback");
 	}
-	
+
 	public int extendBasePrice(int base) {
 		return base + this.extras.stream()
 			.mapToInt(Extra::getFee)
 			.sum();
+	}
+
+	public boolean hasDinner() {
+		return extras.stream()
+			.map(Extra::getName)
+			.anyMatch(name -> name.equals("dinner"))
+			&& !this.host.isPeakDay();
 	}
 }

@@ -52,4 +52,8 @@ public class Booking {
 		return this.premiumDelegate != null ? this.premiumDelegate.extendBasePrice(result) :
 			result;
 	}
+
+	public boolean hasDinner() {
+		return this.premiumDelegate != null && this.premiumDelegate.hasDinner();
+	}
 }

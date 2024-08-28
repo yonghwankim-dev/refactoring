@@ -10,11 +10,4 @@ public class PremiumBooking extends Booking {
 		super(show, date);
 		this.extras = extras;
 	}
-	
-	public boolean hasDinner() {
-		return extras.stream()
-			.map(Extra::getName)
-			.anyMatch(name -> name.equals("dinner"))
-			&& !super.isPeakDay();
-	}
 }

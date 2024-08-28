@@ -73,7 +73,7 @@ class BookingTest {
 		Extra premiumFee = new Extra("premiumFee", 3000);
 		Extra dinner = new Extra("dinner", 5000);
 
-		PremiumBooking booking = new PremiumBooking(show, date, List.of(premiumFee, dinner));
+		PremiumBooking booking = Booking.createPremiumBooking(show, date, List.of(premiumFee, dinner));
 		// when
 		boolean result = booking.hasDinner();
 		// then
