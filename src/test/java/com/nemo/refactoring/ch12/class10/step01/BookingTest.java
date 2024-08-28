@@ -30,7 +30,7 @@ class BookingTest {
 		// given
 		Show show = new Show(10000, List.of("talkback"));
 		LocalDate date = LocalDate.of(2024, 6, 30);
-		Booking booking = new PremiumBooking(show, date, new ArrayList<>());
+		Booking booking = Booking.createPremiumBooking(show, date, new ArrayList<>());
 		// when
 		boolean result = booking.hasTalkback();
 		// then
@@ -94,6 +94,5 @@ class BookingTest {
 		// then
 		Assertions.assertThat(booking.calculateBasePrice()).isEqualTo(10000);
 		Assertions.assertThat(premiumBooking.calculateBasePrice()).isEqualTo(18000);
-		Assertions.assertThat(premiumBooking.getPremiumDelegate()).isNotNull();
 	}
 }

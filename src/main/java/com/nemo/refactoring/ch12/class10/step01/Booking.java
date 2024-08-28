@@ -6,6 +6,7 @@ import java.util.List;
 public class Booking {
 	final Show show;
 	final LocalDate date;
+
 	private PremiumBookingDelegate premiumDelegate;
 
 	public Booking(Show show, LocalDate date) {
@@ -28,7 +29,8 @@ public class Booking {
 	}
 
 	public boolean hasTalkback() {
-		return this.show.hasOwnProperty("talkback") && !this.isPeakDay();
+		return this.premiumDelegate != null ? this.premiumDelegate.hasTalkback() :
+			this.show.hasOwnProperty("talkback") && !this.isPeakDay();
 	}
 
 	// date가 7월 1일 ~ 8월 1일 사이인지 여부 검사

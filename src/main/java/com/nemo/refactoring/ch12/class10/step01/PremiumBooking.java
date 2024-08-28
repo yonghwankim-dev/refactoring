@@ -12,11 +12,6 @@ public class PremiumBooking extends Booking {
 	}
 
 	@Override
-	public boolean hasTalkback() {
-		return super.show.hasOwnProperty("talkback");
-	}
-
-	@Override
 	public int calculateBasePrice() {
 		return super.calculateBasePrice() + this.extras.stream()
 			.mapToInt(Extra::getFee)
