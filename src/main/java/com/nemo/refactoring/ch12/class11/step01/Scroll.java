@@ -4,11 +4,12 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
 
-public class Scroll extends CatalogItem {
+public class Scroll {
 	private final LocalDate lastCleaned;
+	private final CatalogItem catalogItem;
 
 	public Scroll(int id, String title, List<String> tags, LocalDate dateLastCleaned) {
-		super(id, title, tags);
+		this.catalogItem = new CatalogItem(id, title, tags);
 		this.lastCleaned = dateLastCleaned;
 	}
 
@@ -19,5 +20,17 @@ public class Scroll extends CatalogItem {
 
 	private long daysSinceLastCleaning(LocalDate targetDate) {
 		return this.lastCleaned.until(targetDate, ChronoUnit.DAYS);
+	}
+
+	public int getId() {
+		return catalogItem.getId();
+	}
+
+	public String getTitle() {
+		return catalogItem.getTitle();
+	}
+	
+	public boolean hasTag(String tag) {
+		return catalogItem.hasTag(tag);
 	}
 }
