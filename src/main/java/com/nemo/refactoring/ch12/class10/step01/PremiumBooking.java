@@ -11,4 +11,22 @@ public class PremiumBooking extends Booking {
 		this.extras = extras;
 	}
 
+	@Override
+	public boolean hasTalkback() {
+		return super.show.hasOwnProperty("talkback");
+	}
+
+	@Override
+	public int calculateBasePrice() {
+		return super.calculateBasePrice() + this.extras.stream()
+			.mapToInt(Extra::getFee)
+			.sum();
+	}
+
+	public boolean hasDinner() {
+		return extras.stream()
+			.map(Extra::getName)
+			.anyMatch(name -> name.equals("dinner"))
+			&& !super.isPeakDay();
+	}
 }
