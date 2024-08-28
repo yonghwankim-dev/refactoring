@@ -49,10 +49,7 @@ public class Booking {
 		if (this.isPeakDay()) {
 			result += (int)Math.round(result * 0.15);
 		}
-		return result;
-	}
-
-	public PremiumBookingDelegate getPremiumDelegate() {
-		return premiumDelegate;
+		return this.premiumDelegate != null ? this.premiumDelegate.extendBasePrice(result) :
+			result;
 	}
 }

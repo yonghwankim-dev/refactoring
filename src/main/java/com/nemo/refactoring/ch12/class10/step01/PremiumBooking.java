@@ -10,14 +10,7 @@ public class PremiumBooking extends Booking {
 		super(show, date);
 		this.extras = extras;
 	}
-
-	@Override
-	public int calculateBasePrice() {
-		return super.calculateBasePrice() + this.extras.stream()
-			.mapToInt(Extra::getFee)
-			.sum();
-	}
-
+	
 	public boolean hasDinner() {
 		return extras.stream()
 			.map(Extra::getName)

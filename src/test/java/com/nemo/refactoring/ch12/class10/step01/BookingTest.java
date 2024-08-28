@@ -57,7 +57,7 @@ class BookingTest {
 		Show show = new Show(10000, List.of("talkback"));
 		LocalDate date = LocalDate.of(2024, 7, 1);
 		Extra premiumFee = new Extra("premiumFee", 3000);
-		Booking booking = new PremiumBooking(show, date, List.of(premiumFee));
+		Booking booking = Booking.createPremiumBooking(show, date, List.of(premiumFee));
 		// when
 		int basePrice = booking.calculateBasePrice();
 		// then
@@ -94,5 +94,16 @@ class BookingTest {
 		// then
 		Assertions.assertThat(booking.calculateBasePrice()).isEqualTo(10000);
 		Assertions.assertThat(premiumBooking.calculateBasePrice()).isEqualTo(18000);
+	}
+
+	@DisplayName("")
+	@Test
+	void test() {
+		// given
+
+		// when
+
+		// then
+
 	}
 }
