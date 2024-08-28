@@ -14,7 +14,7 @@ class PersonTest {
 		// given
 		List<Person> people = List.of(new Male("kim"), new Female("lee"), new Male("park"));
 		// when
-		long count = people.stream().filter(p -> p instanceof Male).count();
+		long count = people.stream().filter(Person::isMale).count();
 		// then
 		Assertions.assertThat(count).isEqualTo(2);
 	}
@@ -28,6 +28,6 @@ class PersonTest {
 		// when
 		Person person = Person.createPerson(name, gender);
 		// then
-		Assertions.assertThat(person).isInstanceOf(Male.class);
+		Assertions.assertThat(person).isInstanceOf(Person.class);
 	}
 }

@@ -2,28 +2,18 @@ package com.nemo.refactoring.ch12.class07.step01;
 
 public class Person {
 	private final String name;
+	private final String genderCode;
 
-	public Person(String name) {
+	public Person(String name, String genderCode) {
 		this.name = name;
-	}
-
-	public static Person createMale(String name) {
-		return new Male(name);
-	}
-
-	public static Person createFemale(String name) {
-		return new Female(name);
-	}
-
-	public static Person createPerson(String name) {
-		return new Person(name);
+		this.genderCode = genderCode;
 	}
 
 	public static Person createPerson(String name, String gender) {
 		return switch (gender) {
-			case "M" -> createMale(name);
-			case "F" -> createFemale(name);
-			default -> createPerson(name);
+			case "M" -> new Person(name, "M");
+			case "F" -> new Person(name, "F");
+			default -> new Person(name, "X");
 		};
 	}
 
@@ -32,6 +22,10 @@ public class Person {
 	}
 
 	public String genderCode() {
-		return "X";
+		return genderCode;
+	}
+
+	public boolean isMale() {
+		return "M".equals(genderCode);
 	}
 }
