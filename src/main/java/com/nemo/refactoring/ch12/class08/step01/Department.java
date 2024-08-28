@@ -2,12 +2,11 @@ package com.nemo.refactoring.ch12.class08.step01;
 
 import java.util.List;
 
-public class Department {
-	private final String name;
+public class Department extends Party {
 	private final List<Employee> employee;
 
 	public Department(String name, List<Employee> employee) {
-		this.name = name;
+		super(name);
 		this.employee = employee;
 	}
 
@@ -24,11 +23,7 @@ public class Department {
 	public int getTotalAnnualCost() {
 		return this.totalMonthlyCost() * 12;
 	}
-
-	public String getName() {
-		return name;
-	}
-
+	
 	public List<Employee> getEmployee() {
 		return employee;
 	}
