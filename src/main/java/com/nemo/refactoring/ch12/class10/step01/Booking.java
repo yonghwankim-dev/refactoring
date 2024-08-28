@@ -1,25 +1,32 @@
 package com.nemo.refactoring.ch12.class10.step01;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Booking {
 	final Show show;
 	final LocalDate date;
+	final List<Extra> extras;
 
 	private PremiumBookingDelegate premiumDelegate;
 
 	public Booking(Show show, LocalDate date) {
+		this(show, date, new ArrayList<>());
+	}
+
+	public Booking(Show show, LocalDate date, List<Extra> extras) {
 		this.show = show;
 		this.date = date;
+		this.extras = extras;
 	}
 
 	public static Booking createBooking(Show show, LocalDate date) {
 		return new Booking(show, date);
 	}
 
-	public static PremiumBooking createPremiumBooking(Show show, LocalDate date, List<Extra> extras) {
-		PremiumBooking result = new PremiumBooking(show, date, extras);
+	public static Booking createPremiumBooking(Show show, LocalDate date, List<Extra> extras) {
+		Booking result = new Booking(show, date, extras);
 		result.bePremium(extras);
 		return result;
 	}

@@ -73,7 +73,7 @@ class BookingTest {
 		Extra premiumFee = new Extra("premiumFee", 3000);
 		Extra dinner = new Extra("dinner", 5000);
 
-		PremiumBooking booking = Booking.createPremiumBooking(show, date, List.of(premiumFee, dinner));
+		Booking booking = Booking.createPremiumBooking(show, date, List.of(premiumFee, dinner));
 		// when
 		boolean result = booking.hasDinner();
 		// then
@@ -90,20 +90,9 @@ class BookingTest {
 		Extra dinner = new Extra("dinner", 5000);
 		// when
 		Booking booking = Booking.createBooking(show, date);
-		PremiumBooking premiumBooking = Booking.createPremiumBooking(show, date, List.of(premiumFee, dinner));
+		Booking premiumBooking = Booking.createPremiumBooking(show, date, List.of(premiumFee, dinner));
 		// then
 		Assertions.assertThat(booking.calculateBasePrice()).isEqualTo(10000);
 		Assertions.assertThat(premiumBooking.calculateBasePrice()).isEqualTo(18000);
-	}
-
-	@DisplayName("")
-	@Test
-	void test() {
-		// given
-
-		// when
-
-		// then
-
 	}
 }
