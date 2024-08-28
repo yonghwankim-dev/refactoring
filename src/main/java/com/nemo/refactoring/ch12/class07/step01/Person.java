@@ -7,6 +7,18 @@ public class Person {
 		this.name = name;
 	}
 
+	public static Person createMale(String name) {
+		return new Male(name);
+	}
+
+	public static Person createFemale(String name) {
+		return new Female(name);
+	}
+
+	public static Person createPerson(String name) {
+		return new Person(name);
+	}
+
 	public String getName() {
 		return name;
 	}
