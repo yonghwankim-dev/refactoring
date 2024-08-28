@@ -18,7 +18,7 @@ class DepartmentTest {
 			new Employee("회사원C", 3, 300)
 		));
 		// when
-		int cost = department.getTotalAnnualCost();
+		int cost = department.getAnnualCost();
 		// then
 		Assertions.assertThat(cost).isEqualTo((1200 + 2400 + 3600) * 12);
 	}

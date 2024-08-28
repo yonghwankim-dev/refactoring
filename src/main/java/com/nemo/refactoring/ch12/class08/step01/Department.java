@@ -10,20 +10,17 @@ public class Department extends Party {
 		this.employee = employee;
 	}
 
-	public int totalMonthlyCost() {
+	@Override
+	public int getMonthlyCost() {
 		return employee.stream()
 			.mapToInt(Employee::getAnnualCost)
 			.sum();
 	}
-
+	
 	public int getHeadCount() {
 		return employee.size();
 	}
 
-	public int getTotalAnnualCost() {
-		return this.totalMonthlyCost() * 12;
-	}
-	
 	public List<Employee> getEmployee() {
 		return employee;
 	}
