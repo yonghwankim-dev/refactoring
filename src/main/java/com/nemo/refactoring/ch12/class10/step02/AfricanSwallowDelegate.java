@@ -1,17 +1,12 @@
 package com.nemo.refactoring.ch12.class10.step02;
 
-public class AfricanSwallowDelegate {
+public class AfricanSwallowDelegate extends SpeciesDelegate {
 
 	private final int numberOfCoconuts;
-	private final Bird bird;
 
 	public AfricanSwallowDelegate(BirdInfo data, Bird bird) {
+		super(data, bird);
 		this.numberOfCoconuts = data.getNumberOfCounts();
-		this.bird = bird;
-	}
-
-	public String getPlumage() {
-		return this.bird != null ? this.bird.getPlumage() : "보통이다";
 	}
 
 	public int getAirSpeedVelocity() {

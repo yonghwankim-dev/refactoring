@@ -1,14 +1,13 @@
 package com.nemo.refactoring.ch12.class10.step02;
 
-public class NorwegianBlueParrotDelegate {
+public class NorwegianBlueParrotDelegate extends SpeciesDelegate {
 	private final int voltage;
 	private final boolean isNailed;
-	private final Bird bird;
 
 	public NorwegianBlueParrotDelegate(BirdInfo data, Bird bird) {
+		super(data, bird);
 		this.voltage = data.getVoltage();
 		this.isNailed = data.isNailed();
-		this.bird = bird;
 	}
 
 	public String getPlumage() {

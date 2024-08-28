@@ -1,17 +1,11 @@
 package com.nemo.refactoring.ch12.class10.step02;
 
-public class EuropeanSwallowDelegate {
-
-	private final Bird bird;
+public class EuropeanSwallowDelegate extends SpeciesDelegate {
 
 	public EuropeanSwallowDelegate(Bird bird) {
-		this.bird = bird;
+		super(null, bird);
 	}
-
-	public String getPlumage() {
-		return this.bird != null ? this.bird.getPlumage() : "보통이다";
-	}
-
+	
 	public int getAirSpeedVelocity() {
 		return 35;
 	}
