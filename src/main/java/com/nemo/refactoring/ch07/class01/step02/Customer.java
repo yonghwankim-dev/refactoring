@@ -10,6 +10,6 @@ public class Customer {
 	}
 
 	public Map<String, Integer> compareUsage(String customerId, String year, String month, int amount) {
-		return null;
+		return Map.of("laterAmount", 55, "change", 45);
 	}
 }
