@@ -14,17 +14,15 @@ public class Bird {
 
 	private Object selectSpeciesDelegate(BirdInfo data) {
 		return switch (data.getType()) {
-			case "유럽 제비" -> new EuropeanSwallowDelegate();
-			case "아프리카 제비" -> new AfricanSwallowDelegate(data);
+			case "유럽 제비" -> new EuropeanSwallowDelegate(this);
+			case "아프리카 제비" -> new AfricanSwallowDelegate(data, this);
+			case "노르웨이 파란 앵무" -> new NorwegianBlueParrotDelegate(data, this);
 			default -> null;
 		};
 	}
 
 	public static Bird createBird(BirdInfo data) {
-		return switch (data.getType()) {
-			case "노르웨이 파란 앵무" -> new NorwegianBlueParrot(data);
-			default -> new Bird(data);
-		};
+		return new Bird(data);
 	}
 
 	public String getName() {
@@ -32,7 +30,10 @@ public class Bird {
 	}
 
 	public String getPlumage() {
-		return plumage != null ? plumage : "보통이다";
+		if (this.speciesDelegate instanceof NorwegianBlueParrotDelegate) {
+			return ((NorwegianBlueParrotDelegate)this.speciesDelegate).getPlumage();
+		}
+		return this.speciesDelegate != null ? plumage : "보통이다";
 	}
 
 	public int getAirSpeedVelocity() {
@@ -42,7 +43,10 @@ public class Bird {
 		if (this.speciesDelegate instanceof EuropeanSwallowDelegate) {
 			return ((EuropeanSwallowDelegate)this.speciesDelegate).getAirSpeedVelocity();
 		}
-		return ((AfricanSwallowDelegate)this.speciesDelegate).getAirSpeedVelocity();
+		if (this.speciesDelegate instanceof AfricanSwallowDelegate) {
+			return ((AfricanSwallowDelegate)this.speciesDelegate).getAirSpeedVelocity();
+		}
+		return ((NorwegianBlueParrotDelegate)this.speciesDelegate).getAirSpeedVelocity();
 	}
 
 	public Object getSpeciesDelegate() {
