@@ -19,5 +19,4 @@ class ScrollTest {
 		// then
 		Assertions.assertThat(result).isTrue();
 	}
-
 }
