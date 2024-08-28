@@ -94,5 +94,6 @@ class BookingTest {
 		// then
 		Assertions.assertThat(booking.calculateBasePrice()).isEqualTo(10000);
 		Assertions.assertThat(premiumBooking.calculateBasePrice()).isEqualTo(18000);
+		Assertions.assertThat(premiumBooking.getPremiumDelegate()).isNotNull();
 	}
 }

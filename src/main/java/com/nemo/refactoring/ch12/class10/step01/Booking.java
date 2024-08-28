@@ -6,6 +6,7 @@ import java.util.List;
 public class Booking {
 	final Show show;
 	final LocalDate date;
+	private PremiumBookingDelegate premiumDelegate;
 
 	public Booking(Show show, LocalDate date) {
 		this.show = show;
@@ -17,7 +18,13 @@ public class Booking {
 	}
 
 	public static PremiumBooking createPremiumBooking(Show show, LocalDate date, List<Extra> extras) {
-		return new PremiumBooking(show, date, extras);
+		PremiumBooking result = new PremiumBooking(show, date, extras);
+		result.bePremium(extras);
+		return result;
+	}
+
+	void bePremium(List<Extra> extras) {
+		this.premiumDelegate = new PremiumBookingDelegate(this, extras);
 	}
 
 	public boolean hasTalkback() {
@@ -41,5 +48,9 @@ public class Booking {
 			result += (int)Math.round(result * 0.15);
 		}
 		return result;
+	}
+
+	public PremiumBookingDelegate getPremiumDelegate() {
+		return premiumDelegate;
 	}
 }
