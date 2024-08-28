@@ -12,7 +12,8 @@ class PersonTest {
 	@Test
 	void testMaleCount() {
 		// given
-		List<Person> people = List.of(new Male("kim"), new Female("lee"), new Male("park"));
+		List<Person> people = List.of(Person.createPerson("kim", "M"), Person.createPerson("lee", "M"),
+			Person.createPerson("park", "F"));
 		// when
 		long count = people.stream().filter(Person::isMale).count();
 		// then
