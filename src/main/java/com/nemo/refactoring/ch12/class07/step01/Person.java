@@ -19,6 +19,14 @@ public class Person {
 		return new Person(name);
 	}
 
+	public static Person createPerson(String name, String gender) {
+		return switch (gender) {
+			case "M" -> createMale(name);
+			case "F" -> createFemale(name);
+			default -> createPerson(name);
+		};
+	}
+
 	public String getName() {
 		return name;
 	}

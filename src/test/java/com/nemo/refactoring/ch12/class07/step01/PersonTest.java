@@ -18,4 +18,16 @@ class PersonTest {
 		// then
 		Assertions.assertThat(count).isEqualTo(2);
 	}
+
+	@DisplayName("이름과 성별을 전달하여 객체를 생성한다")
+	@Test
+	void createPerson() {
+		// given
+		String name = "kim";
+		String gender = "M";
+		// when
+		Person person = Person.createPerson(name, gender);
+		// then
+		Assertions.assertThat(person).isInstanceOf(Male.class);
+	}
 }
